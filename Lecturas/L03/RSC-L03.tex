@@ -1,0 +1,64 @@
+\documentclass[a4paper, 12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{bussproofs}
+\usepackage{proof}
+
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\pagestyle{fancy}
+\lfoot{jalrod@ciencias.unam.mx}
+\rfoot{jeanpaul@ciencias.unam.mx}
+
+\begin{document}
+
+\begin{flushright}
+    Almeida Rodríguez Jerónimo\\
+    Ruiz Melo Jean Paul
+\end{flushright}
+
+\begin{center}
+    {\LARGE Lectura 3}\\
+    {\LARGE Redes y Física Estadística.}
+\end{center}
+
+Al intnentar modelar sistemas complejos ``vivos'' con redes surge el problema de
+que estos sistemas están en cambio constante. La forma que se ha encontrado de
+modelarlos a pesar de esta complicación es por medio de la física estadística.\\
+
+El primer artículo habla sobre el tráfico en una ciudad (Madrid). Los nodos son
+las intersecciones y el tráfico se simula mediante peso en los arcos de la red.
+Esto hace que la red sea una red de flujo. El problema que se presenta entonces
+es que el tráfico no es constante todo el tiempo, sino que hay varianza en el
+flujo. La manera que se encontró de estimar el tráfico fue mediante el método
+del ``Modelo de Congestión Microscópica'' que describe la ecuación:
+$$ \Delta q_i = g_i+\sigma_i-d_i$$
+Dónde el incremento de vehículos por unidad de tiempo es la suma de la media de
+vehículos que llegan, se quedan y salen de la intersección. Esto permite atacar
+un problema global (el tráfico en la red de tránsito) de manera local
+(estudiando cada intersección).
+
+Por otro lado, podemos aplicar este principio a la propagación de epidemias.
+Sabemos que los patrones de propagación de una epidemia dependen de varios
+factores cómo la infectividad, la centralidad del primer grado infectado y el
+contexto (momento, ambiente, medio, etc) en el que se desarrolla. Después de
+esto podemos estudiar el aspecto de la propagación en sí, es decir, qué tan
+suceptible es un nodo a ser infectado, a recuperarse de la infección y si se
+puede o no volverse a infectar  (cómo es el caso de las enfermedades
+estacionarias). Estos últimos factores se calculan según la probabilidad de que
+se de cada uno de los escenarios antes mencionados. Según el artículo estas
+probabilidades se dan por las siguientes ecuaciones diferenciales del tiempo:
+$$ \frac{dl}{dt}=\beta SI-\mu I \ \ \& \ \ \frac{dS}{dt}=\mu I-\beta IS$$
+Estas ecuaciones simulan las transiciones de fase de una epidemia dada una
+probabilidad de infección.\\
+
+De esta manera podemos simular con cierto grado de certeza ciertos problemas
+de redes de sistemas complejos de manera local (dada la probabilidad en un nodo)
+y estudiar toda la red.
+
+\end{document}

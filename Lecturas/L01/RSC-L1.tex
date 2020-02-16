@@ -1,0 +1,66 @@
+\documentclass[a4paper, 12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{bussproofs}
+\usepackage{proof}
+
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\pagestyle{fancy}
+\lfoot{jalrod@ciencias.unam.mx}
+\rfoot{jeanpaul@ciencias.unam.mx}
+
+\begin{document}
+
+\begin{flushright}
+    Almeida Rodríguez Jerónimo\\
+    Ruiz Melo Jean Paul
+\end{flushright}
+
+\begin{center}
+    \Huge{Lectura 1}\\
+    \Huge{Frozen}
+\end{center}
+
+Una red social nos puede ayudar a descubrir propiedades sobre los personajes
+del caso de estudio (Frozen). Dependiendo de lo que queramos medir es la manera
+en la que encontraremos el nivel de importancia de un personaje. A esto se le
+conoce cómo centralidad. Por ejemplo, si nuestra medida de centralidad es el nivel de amistad entre los personajes, podemos intentar atacar este problema dando a cada nodo un
+valor de 1 y sumarle el número de vecinos que tiene y después dividir esto por
+el número de nodos en la gráfica. Este resultado (llamado eigenvector de
+centralidad) nos da una centralidad basada en el número de personajes que se
+conocen entre sí. Otro acercamiento es calculando el tiempo que los personajes
+interactúan entre sí a lo largo de la película o cómo afecta cada personaje el
+desarrollo de los eventos en la película.
+
+% A social network is when a group of people known each other, as well as the relationships that they share. We can use a method of who talks to who to attempt to determine who's greater friends, we can then determine their importance, or centrality, based on who they are friends with using a method of defining each nodes value as 1, then adding all their neighbors to define their centrality. We have to divide it by the total number of nodes first, but when we repeat this enough we get the eigenvector values.
+
+Estas herramientas nos ayudan a entender la centralidad de otros sistemas como
+internet, la cual provee muchos usos prácticos cómo encontrar la centralidad de
+una computadora o en cuantos pasos se puede contactar. Otro ejemplo es
+en la ecología, dónde se construye una red de alimentación basada en la
+depredación de distintas especies. Encontrar la centralidad de ciertas especies
+en esta red nos ayudaría a descubrir cual causaría el mayor daño ecológico en
+caso de desaparecer.
+
+% Learning things like this helps us understand the centrality of other systems like the internet which provide many practical uses. Like discovering the centrality of a computer or how many steps it would take to contact it. Another example is in ecology, where we can make a food web based on the predation of different species, and allowing us to know which species would cause the most ecological harm should they disappear.
+
+No obstante, los investigadores están desarrollando maneras de crear redes
+realistas, cómo las relaciones personales de las cuales hay diferentes tipos
+que afectan la importancia, las amistades cambian y eventos continuamente
+afectan la ``cercanía''. Al final del día, el estudio de redes nos ayuda a
+determinar las mejores maneras de medir la importancia de gente, animales y
+otras entidades según su entorno.
+
+% However researchers are still developing ways to be able to create accurate networks, as in real life friendships change, as well as having different kinds of relationships which can affect how important they are. At the end of the day, the study of networks is determining the best ways to measure the importance of people, animals and other entities.
+
+
+
+
+
+\end{document}

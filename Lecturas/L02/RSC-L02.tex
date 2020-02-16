@@ -1,0 +1,56 @@
+\documentclass[a4paper, 12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{bussproofs}
+\usepackage{proof}
+
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\pagestyle{fancy}
+\lfoot{jalrod@ciencias.unam.mx}
+\rfoot{jeanpaul@ciencias.unam.mx}
+
+\begin{document}
+
+\begin{flushright}
+    Almeida Rodríguez Jerónimo\\
+    Ruiz Melo Jean Paul
+\end{flushright}
+
+\begin{center}
+    {\LARGE Lectura 2}\\
+    {\LARGE How Network Math Can Help You Make Friends.}
+\end{center}
+
+Un nodo es un elemento en una red que representa de manera atómica partes del
+objeto de estudio en cuestión. Cómo por ejemplo:
+\begin{itemize}
+    \item Villa-regular, dónde cada nodo tiene grado a lo más 4.
+    \item Villa-aleatoria, dónde la probabilidad de que un nodo se conecte con
+        otro es de $\frac{\#\text{nodos}}{\#\text{posibles conecciones}}$, en este
+        ejemplo es de $\frac{1}{5}$
+\end{itemize}
+
+Estas redes son fáciles de estudiar pero son poco realistas.\\
+
+Cuando un red empieza a ser muy grande, puede ser difícil entender la
+información que representa. Cómo el grado de un nodo sólo da información local
+debemos usar el grado de todos los nodos para poder tener un idea global del
+comportamiento de la red. En la práctica las redes presentan algo llamado
+conección preferencial dónde un nodo que tiene muchos vecinos tiene  una mayor
+probabilidad de conectarse a otros vecinos. Estos nodos de alto grado son
+importantes ya que otorgan una conexión estable en casos que se empieza a romper
+la red.\\
+
+Rara vez las distribuciones de los grados son polinomiales; en general son
+exponenciales o logarítmicas normales, es decir que en la realidad muy pocos
+nodos son ``extremadamente centrales'' con grados muy grandes. Esto importa en
+el momento en el que se quieren aplicar teorías a la información que representa la red.
+
+
+\end{document}

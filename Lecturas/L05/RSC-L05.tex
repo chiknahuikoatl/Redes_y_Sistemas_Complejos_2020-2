@@ -1,0 +1,62 @@
+\documentclass[a4paper, 12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{bussproofs}
+\usepackage{proof}
+
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\pagestyle{fancy}
+\lfoot{jalrod@ciencias.unam.mx}
+\rfoot{jeanpaul@ciencias.unam.mx}
+
+\begin{document}
+
+\begin{flushright}
+    Almeida Rodríguez Jerónimo\\
+    Ruiz Melo Jean Paul
+\end{flushright}
+
+\begin{center}
+    {\LARGE Lectura 5}\\
+    {\LARGE Complejidad}
+\end{center}
+
+La diferencia entre un sitema complejo y un sistema simple es el conjunto de
+datos con el que se va a trabajar. En el caso del sistema complejo, esta
+cantidad de datos puede ser abrumadora. La solución que se ha encontrado para
+poder estudiar estos sistemas complejos es analizando esta información a
+diferentes escalas, es decir, aplicando una granularidad distinta al objeto que
+estamos estudiadiando.\\
+
+El artículo usa cómo ejemplo el comportamiento físico del agua ejemplificando
+que si bien, podemos estudiar el comportamiento de cada átomo en función de la
+temperatura y presión, este análisises impráctico debido a que hay millones de
+átomos en una muestra dada. Por otro lado, si ``escalamos hacia arriba'' el
+análisis podemos observar que una masa de agua tiene cierto comportamiento
+consistente dependiendo del cambio de temperatura y presión.\\
+
+Este comportamiento puede modelarse matemáticamente de manera relativamente
+sencilla hasta cierto punto, pues el comportamiento del agua, al cambiar de fase
+diverge de dicha predicción. Esto nos habla de una de las limitaciones más
+importantes de la modelación matemática; se asume que el comportamiento del
+objeto de estudio es regular a lo largo del parámetro de estudio (en este caso
+temperatura y presión pero también pude ser tiempo).\\
+
+El análisis se puede hacer a escala macroscópica o microscópica. Una macro
+escala da información general del sistema a partir de las divisiones más simples
+que se pueden obtener del mismo. Por su parte, una micro escala particiona aún
+más al sistema, lo cual trae consigo dos aspectos importantes:
+\begin{enumerate}
+    \item Se requiere más información para describir a los elementos de este
+    sistema y por lo tanto es más pesado procesar esta información.
+    \item Al describirse características básicas, se pueden definir distintos
+    sistemas con los mismos elementos variando apenas un poco el comportamiento
+    o el entorno.
+\end{enumerate}
+\end{document}
