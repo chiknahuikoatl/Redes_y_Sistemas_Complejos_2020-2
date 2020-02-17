@@ -34,29 +34,30 @@ poder estudiar estos sistemas complejos es analizando esta información a
 diferentes escalas, es decir, aplicando una granularidad distinta al objeto que
 estamos estudiadiando.\\
 
-El artículo usa cómo ejemplo el comportamiento físico del agua ejemplificando
-que si bien, podemos estudiar el comportamiento de cada átomo en función de la
-temperatura y presión, este análisises impráctico debido a que hay millones de
-átomos en una muestra dada. Por otro lado, si ``escalamos hacia arriba'' el
-análisis podemos observar que una masa de agua tiene cierto comportamiento
-consistente dependiendo del cambio de temperatura y presión.\\
+El artículo usa cómo ejemplo el comportamiento físico del agua. En este ejemplo
+podemos ver cómo las ideas de escala múltiple funcionan. Por ejemplo, no nos
+enfocamos en el comportamiento individual de los átomos sino que por medio de la
+presión, temperatura y volumen podemos describir lo que vemos y podemos
+manipular. Granularizando esta escala podemos manejar los cambios en los niveles
+más bajos sacando promedios de comportamiento. Esto nos ayuda a decidir qué
+parámetros son importantes según y cómo se comportan en distintas escalas.\\
 
 Este comportamiento puede modelarse matemáticamente de manera relativamente
 sencilla hasta cierto punto, pues el comportamiento del agua, al cambiar de fase
-diverge de dicha predicción. Esto nos habla de una de las limitaciones más
-importantes de la modelación matemática; se asume que el comportamiento del
-objeto de estudio es regular a lo largo del parámetro de estudio (en este caso
-temperatura y presión pero también pude ser tiempo).\\
+diverge de dicha predicción, lo cual denota una de las limitaciones más
+importantes de la modelación matemática que es asumir que el comportamiento del
+objeto de estudio es regular.\\
 
-El análisis se puede hacer a escala macroscópica o microscópica. Una macro
-escala da información general del sistema a partir de las divisiones más simples
-que se pueden obtener del mismo. Por su parte, una micro escala particiona aún
-más al sistema, lo cual trae consigo dos aspectos importantes:
-\begin{enumerate}
-    \item Se requiere más información para describir a los elementos de este
-    sistema y por lo tanto es más pesado procesar esta información.
-    \item Al describirse características básicas, se pueden definir distintos
-    sistemas con los mismos elementos variando apenas un poco el comportamiento
-    o el entorno.
-\end{enumerate}
+Es importante notar que el modelo es un mapeo uno a uno con el sistema
+para evitar pérdida de información. La información necesaria para representar un
+sistema se conoce cómo el perfil de complejidad. La cantidad total de
+información está definida cómo el log$_2$ del número de bits necesarios para
+representar el número total de mensajes.\\
+
+Al normalizar toda esta información se han encontrado instancias de sistemas con
+el mismo comportamiento a gran escala. Este comportamiento se conoce cómo
+universalidad de clase. Un ejemplo de esto son los patrones de Turing dónde el
+comportamiento microscópico solamente sirve cómo parámetros para dar el
+comportamiento general del patrón.
+
 \end{document}
