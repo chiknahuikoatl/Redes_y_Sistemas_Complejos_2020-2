@@ -1,0 +1,15 @@
+A network is an entity where the connections between it's parts matter more than the actual connection itself. This is defined by property called complexity, where everything is connected to everything else, which can cause some difficult problems.
+
+Every network is just a collection of nodes and connections. For example, when designing an abstracted map for the the subway, Henry Beck discovered that only the links between each station was important, rather than the actual geography of london. Or in other words, geography matters less than netography.
+
+Another example of netography refers to the Six-Degrees of Kevin Bacon, which originated from the fact that any two U.S citizen were seperated by just 6 connections, which was one of the earliest victories for Network Theory.
+
+These connections and nodes were eventually discovered to be able to come small worlds using a few shortcuts. Allowing the  number of hops it took to get from one place in the network to another to be vastly reduced. Becoming a universal law of networks.
+
+Real world networks however are so complex that these abstractions can only go so far. But with the introduction of Big Data, it allowed scientists to map out real world behaviors of complex networks.
+
+One key discovery was the importance of super-connected nodes called Hubs. These hubs were discovered to be controlling the begavior of large networks.
+
+Network science is whats allowed researchers to begin to map out the best way to search through information in order to better use it.
+
+Some worry that such analitical perspectives can cause the world to be less humane and human, balancing the duality of which  has given us a new way to understand how the world is built.
