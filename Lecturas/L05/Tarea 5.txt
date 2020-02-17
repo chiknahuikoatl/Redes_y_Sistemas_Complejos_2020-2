@@ -1,0 +1,17 @@
+When talking about complex systems, these are usually studied at larger scales. But many systems aren't easily described using both micro and macro scales, and instead require knowning what information is most prevelant to observe.
+
+This is where multiscale ideas help, for example, when studying matter we tend no to worry about the individual atoms, and instead focus on pressure, temperature and volume to describe what we can see and manipulate. This is due to the fine scale of behaviors while large scale properties we can observe.
+
+However, statistics and calculus aren't useful when talking about the critical points of a system, as they can fluctiuate and don't follow the average expected. Thus the renomalization group was developed.
+
+Dividing the system into multiple scales, or levels of resolution, we can better handle changes in lower levels by applying the average to the next one. We can then decide which paramaters are important, as if one increases in prevelance at higher scales, then it's a relevant parameter, and if it decreases, it's an irrelevant parameter.
+
+A representation of a system is a one to one map, in order to stay faithful to the system it's representing,  using mathematical variables. As a model with fewer or more states will result in a loss or excess of information. Thus allowing us to focus in on the states that are distinguishable at a particular scale of observation.
+
+The complexity profile is the information needed to represent a system in relation to scale. The total amount of information is defined as the log2 ofthe number of bits to represent the set of possible messages. Which is the possible number of states at a particular scale. The complexity of this at finest scales is 1/kbln(2) where kb is Boltzmanns constant.
+
+As this is a single number, we can begin dividing a system into segements, resulting in a log2 resolution. This growth of information is much more rapid than one bit per factor of two. So a sufficient representation is to have a distinguishable state of the system at each of level of resolution.
+
+As more systems were applies renomalization groups, instances of systems having the same behavior resulted in the term universality class to descripe that many systems can be described by the same large scale behavior.
+
+Patern formations, called Turing patters, represent universal classes of behavior, where changes at a microscopic level only change the relevant parameters of a pattern. It is used to describe the fact that universality should be able to allow us to identify classes of systems whose begavior can be described in the way a common mathematical model would.
