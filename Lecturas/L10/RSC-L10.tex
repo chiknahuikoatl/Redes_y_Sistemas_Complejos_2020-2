@@ -1,0 +1,70 @@
+\documentclass[a4paper, 12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{bussproofs}
+\usepackage{proof}
+
+\usepackage{geometry}
+\geometry{
+ top=4cm,
+}
+
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\pagestyle{fancy}
+\lhead{jalrod@ciencias.unam.mx}
+\rhead{jeanpaul@ciencias.unam.mx}
+
+\begin{document}
+
+\begin{flushright}
+    Almeida Rodríguez Jerónimo\\
+    Ruiz Melo Jean Paul
+\end{flushright}
+
+\begin{center}
+    {\LARGE Lectura 10}\\
+    {\LARGE Collective dynamics of ‘small-world’ networks}
+\end{center}
+Podemos ver el relacion entre redes regulares y redes aleartorias usando redes de 
+tipo mundo pequenio. Empezamos suponiendo que hay n vertices, un numero de aristas 
+k por vertice, con una probabilidad p para mover una connecion, tal que esta entre
+0 y 1. Tomamos a p=0 como regularidad y p=1 como disorden. \\
+
+Podemos ahora cuantificar las caracteristicas de un red tomando la distancia 
+caracteristica entre nodos como L(p) y el coeficiente de agrupamiento como C(p).
+Sabemos que L(p) es un propiedad global, mientras que C(p) es una propiedad local.
+Los redes que son mejor trabajar para ver esto son los que tienen los siguientes 
+propiedades:
+\begin{center}
+    1 $<$ ln(n) $<$ k $<$ n
+\end{center}
+Este propiedad asegura que el red tiene conexiones escasas sin que esta disconexa.
+Viendo los redes ahora, se puede notar que un p alto resulta en un C(p) bajo, y un
+p bajo resulta en un C(p) alto. Pero tiene el relacion opuesto a respeto de L(p), 
+ya que da un L(p) alto y un L(p) bajo respectivamente. Esto es debido a que a tomar
+una connecion cercana y moverlo con uno mas lejos, resulta que hace un atajo entre 
+dos vertices que baja la distancia entre vertices en general.  \\
+
+Esto tiene un resultado que no se nota mucho en redes adrupadas, ya que tiene un 
+efecto lineal, mientras que la distancia se baja exponencialmente. Entonces el 
+transicion a un mundo pequenio resulta ser un poco sutible, donde se tiene que 
+ver mas por las caracteristicas de conexiones que tiene el red.\\
+
+Por ejemplo, cuando se tiene un p muy bajo, el infectividad de un enfermedad se 
+hace mas lento, ya que aunque hay un clustering, no se puede propgar al otro 
+lado del red muy rapido, pero con p muy alto, puede hacer estos brincos de manera
+mas rapido.Encontes aunque estos resultados pueden difereir de otros modelos, que
+notan que la estructura del red tiene un impacto sobre el transmision, ilustra 
+que la dinamica es un funcion del estructura. \\
+
+Aunque los redes de mundos pequenios no han recibido mucho atencion, pueden ser
+importantes con un enfoque mas en los redes biologicos, sociales y hechos por 
+humanos con importancia dinamico.
+
+\end{document}
