@@ -1,0 +1,82 @@
+\documentclass[a4paper, 11pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{bussproofs}
+\usepackage{proof}
+
+\usepackage{geometry}
+\geometry{
+ top=4cm,
+}
+
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\pagestyle{fancy}
+\lhead{jalrod@ciencias.unam.mx}
+\rhead{jeanpaul@ciencias.unam.mx}
+
+\begin{document}
+
+\begin{flushright}
+    Almeida Rodríguez Jerónimo\\
+    Ruiz Melo Jean Paul
+\end{flushright}
+
+\begin{center}
+    {\LARGE Lectura 12}\\
+    {\LARGE Global Network of Cargo Ships}
+\end{center}
+
+El articulo habla de redes de puertos que están conectados si un barco
+pasa por ellos. El estudio muestra una
+topologia de la red mundo pequeño con una distribucion de cola larga y busca
+los puertos centrales al red y de esos puertos interconectados para mostrar la
+importancia de regiones geopoliticas y bloques de comercio. Hay tres ``capas''
+para analizar esta red las cuales representan diferentes tipos de barcos, cada
+uno con patrones de rutas y efectos ecológicos distintos\\
+
+Primero, consideramos las trayectorias que toma un barco entre puerto y puerto
+cómo la red. Redes mas grandes se pueden tomar como las uniones de varias
+trayectorias. Luego, para este estudio, se toman 4 redes: las subredes de los
+porta-contenedores, graneleros secos y petroleros y una todas las
+trayectorias. Se asigna peso $w$ entre los puertos i y j como la capacidad de
+todos los barcos que han viajado por esa conexion. \\
+
+En la red de porta-contenedores, se nota que cualesquiera dos puertos de
+una componente gigante tienen una ruta corta para llegar a cualquier
+otro puerto. El tamaño de ruta promedio es de 2.5 pasos a pesar de que las rutas
+circulares son la norma. Cómo el coeficiente de clustering $C=0.49$ la red se
+considera de mundo pequeño.\\
+
+La distribucion de grados muestra que la mayoría de los puertos
+tienen pocas conexiones, pero hay algunos que tienen hasta cientos de conexiones.
+La distribución de los pesos de aristas sigue un regla de P(w) $<$ w$^u$. La
+fuerza de un puerto (P(s) $<$ s$^n$ con n = 1.02 $\pm$ 0.17, el peso
+entrando y saliendo de un puerto) suele crecer mas rapido que su grado, debido a
+una ley de escala. Otra característica importante es la cercanía de centralidad
+de un puerto (cuántos caminos pasan por él).\\
+
+Para ver las caracteristicas de cada puerto en las redes, podemos ver
+sus comunidades (puertos que comparten caminos). Se puede perder algunas
+comunidades debido a lo facil que se
+detectan debido a optimizaciones de modularidad, pero no afecta la
+informacion registrada de comundades. Una cosa que se comparte
+entre las redes es la distribucion de 3-motivos, que se da principalmente por
+el robustez y conectivadad del red. \\
+
+Podemos tomar un indice regularidad p que difiere un arista de una red
+arbitraria para saber que tipo de barco viaja mas. Si un barco viaja S veces a N
+puertos distintos siguiendo L aristas, podemos comparar el promedio de viajes por
+arista f$_{real}$ = S / L con las trayectorias aleatorias f$_{ran}$. Podemos
+calcular entonces la diferencia entre ellas con
+Z = $\frac{(f_{real} - f_{ran})}{o}$, o = desviacion estándar. Si este Z = 0,
+entonces se toman trayectorias arbitrarias. \\
+
+
+
+\end{document}
