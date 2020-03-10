@@ -1,0 +1,71 @@
+\documentclass[a4paper, 11pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{bussproofs}
+\usepackage{proof}
+
+\usepackage{geometry}
+\geometry{
+ top=4cm,
+}
+
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\pagestyle{fancy}
+\lhead{jalrod@ciencias.unam.mx}
+\rhead{jeanpaul@ciencias.unam.mx}
+
+\begin{document}
+
+\begin{flushright}
+    Almeida Rodríguez Jerónimo\\
+    Ruiz Melo Jean Paul
+\end{flushright}
+
+\begin{center}
+    {\LARGE Lectura 13}\\
+    {\LARGE A Dynamical Model for the Air Transportation Network.}
+\end{center}
+
+Aunque la red de transporte aéreo es muy compleja y hay mucha información en
+muchas dimensiones bajo las que se puede estudiar, una manera de estudiarla es
+con redes comlejas. El problema es que el modelo de redes es estático y la red
+de transporte es dinámica, en particular, nos conscierne el tiempo. Para
+resolver este problema, nos apoyamos de la familia de redes llamada redes
+calendarizadas que permiten conexiones gracias a información externa.\\
+
+Primero se inicia creando un modelo matemático de la red con nodos y aristas
+dirigidas. Después se añaden varios nodos secundarios que se utilizan para
+simular retrazo de la conexión entre cualesquiera dos nodos y se utilizan
+``agentes'' para apoyar la simulación. La matriz de adyacencia de esta nueva red
+se divide en 4:
+\begin{itemize}
+    \item{Persistencia: permite a los agentes en nodos primarios permanecer ahí
+        indefinidamente.}
+    \item{Activación: representa el calendario. Un agente se mueve de un nodo
+        primario a un nodo secundario.}
+    \item{Recepción: mueve un agente de un nodo secundario a uno primario.}
+    \item{Transferencia: mueve un agente de un nodo secundario a otro. Simula
+        el paso del tiempo.}
+\end{itemize}
+Luego, la matriz de adyacencia estática se mantiene de paso en paso y la matriz
+de activación cambia.\\
+
+Para simular el movimiento de una manera más realista, se le da a cada agente un
+valor de atracción para moverse a otro nodo. Después, calculamos el costo del
+viaje según el costo de tiempo y los pasajeros dispuestos a viajar en dicho
+tiempo. Se usa entonces un algoritmo greedy para sumar a la red la conexión
+entre cualesquiera dos nodos que sea de menor costo. Finalmente, corremos varios
+pasos de la simulación variando los parámetros de costo de vuelo.\\
+
+Podemos observar después de varias iteraciones, y alterando los costos de viaje
+de un nodo a otro, las conecciónes y la formación de hubs que se va dando dentro
+de la red.
+
+
+\end{document}
