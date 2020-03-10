@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 \documentclass[a4paper, 11pt]{report}
-=======
-\documentclass[a4paper, 12pt]{report}
->>>>>>> 81f8f57d2a9647a1cf8f69927d526467cf73039f
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{textcomp}
@@ -37,98 +33,38 @@
 \end{center}
 
 Aunque la red de transporte aéreo es muy compleja y hay mucha información en
-muchas dimensiones bajo las que se puede estudiar, una manera de estudiarla es
-con redes comlejas. El problema es que el modelo de redes es estático y la red
-de transporte es dinámica, en particular, nos conscierne el tiempo. Para
+muchas dimensiones bajo las que se puede estudiar, una manera de hacerlo es
+con redes complejas. El problema es que el modelo de redes es estático y la red
+de transporte es dinámica, en particular, nos importa el tiempo. Para
 resolver este problema, nos apoyamos de la familia de redes llamada redes
-calendarizadas que permiten conexiones gracias a información externa.\\
+calendarizadas que muestran el crecimiento de una red, las cuales
+activan nodos basándose en información exerna cómo el tiempo.\\
 
-Primero se inicia creando un modelo matemático de la red con nodos y aristas
-dirigidas. Después se añaden varios nodos secundarios que se utilizan para
-simular retrazo de la conexión entre cualesquiera dos nodos y se utilizan
-``agentes'' para apoyar la simulación. La matriz de adyacencia de esta nueva red
-se divide en 4:
+Primero, definimos un modelo matemático de una red dirigida estática. Después se añaden varios nodos secundarios que se utilizan para
+simular el paso del tiempo entre cualesquiera dos nodos y se utilizan
+``agentes'' para apoyar la simulación. La matriz de adyacencia es diferencial y muestra un paso mientras que la de activación almacena la información de calendarizado. Esta última red es dada por la fórmula $A = \frac{[ P | R ]}{[Act | T]}$ dónde:
 \begin{itemize}
-    \item{Persistencia: permite a los agentes en nodos primarios permanecer ahí
+    \item{(P)ersistencia: permite a los agentes en nodos prite ls envíomarios permanecer ahí
         indefinidamente.}
-    \item{Activación: representa el calendario. Un agente se mueve de un nodo
+    \item{(Act)ivación: representa el calendario. Un agente se mueve de un nodo
         primario a un nodo secundario.}
-    \item{Recepción: mueve un agente de un nodo secundario a uno primario.}
-    \item{Transferencia: mueve un agente de un nodo secundario a otro. Simula
+    \item{(R)ecepción: mueve un agente de un nodo secundario a uno primario.}
+    \item{(T)ransferencia: mueve un agente de un nodo secundario a otro. Simula
         el paso del tiempo.}
 \end{itemize}
-Luego, la matriz de adyacencia estática se mantiene de paso en paso y la matriz
-de activación cambia.\\
 
-Para simular el movimiento de una manera más realista, se le da a cada agente un
-valor de atracción para moverse a otro nodo. Después, calculamos el costo del
-viaje según el costo de tiempo y los pasajeros dispuestos a viajar en dicho
-tiempo. Se usa entonces un algoritmo greedy para sumar a la red la conexión
-entre cualesquiera dos nodos que sea de menor costo. Finalmente, corremos varios
-pasos de la simulación variando los parámetros de costo de vuelo.\\
-
-Podemos observar después de varias iteraciones, y alterando los costos de viaje
-de un nodo a otro, las conecciónes y la formación de hubs que se va dando dentro
-de la red.
-
-Scheduled networks is a recently developed tool that allows us to
-define an algorithm to simulate the growth of a network, in this case
-air transportation networks. \\
-
-A network like this has a lot of complex interactions which can make
-it difficult to study. However an instrument which helps us with this
-is Complex Network theory. \\
-
-These networks use nodes that are connected through hubs following a
-given topology. Although powerful, the structure is considered static
-in the sense of time. To overcome this problem, we use scheduled
-networks which activates nodes based on external information, like
-time for example. \\
-
-First, we define a static directed network, in which n nodes are
-connected through links in a adjacency matrix A$_{nxn}$, where each
-value a$_{ij}$ has a value of one if there exists a link between two
-nodes i and j. Now we modify it so that we can include the time
-needed to travel to a connection. We add secondary nodes to some of
-the primary nodes, which we use as schedulers. These secondary nodes
-don't exist in the actual system. The adjacency matrix is now a
-differential adjacency matrix. This matrix is constant and holds one
-time step, while an activation matrix holds the scheduling
-information. \\
-
-The global matrix however, is a matrix of m x m sides, where m is
-the sum of primary and secondary nodes. This matrix S is represented
-as:\\
-$A = [ P \| R ] / [Act \| T]\\$
-Where P, R, Act, and T are submatrixes, with P in the top left, R top
-right, Act bottom left and T bottom right. We can defome these matrixes as:
-\begin{itemize}
-    \item P: The original identity matrix
-    \item ACT: The schedule matrix, which is updated at each step
-    \item R: Moves an agent from a secondary to primary node at the end of a link
-    \item T: The transfer matrix which simulates the passage of time
-\end{itemize}
-We can then chain together these matrix's in order obtain the time
-window, which we can represent as:
+Podemos encadenar matrices para obtener la ventana de tiempo, la cual es representada así:
 \begin{center}
     A = A(t) ... A(t + $\delta$ -1) A(t + $\delta$) = \\
-    = \prod$^{t+1}_{p=t}$[dA + Act(p)]
+    = $\prod^{t+1}_{p=t}$[dA + Act(p)]
 \end{center}
 
-We can then simulate the airline transportation as a group of
-non-connected nodes, and at each time step we add another
-flight to the system. Then to determine the connection we
-ask which flight would minimize the global cost using a
-greedy algorithm. \\
+Podemos simular el transporte de la aerolínea cómo un grupo de nodos
+no conectados. En cada momento añadimos un vuelo al sistema y para simularlo de una manera más realista, se le da a cada agente un
+valor de atracción para moverse de un nodo a otro. Después, calculamos con un algoritmo greedy el costo del
+viaje según el tiempo y los pasajeros dispuestos a viajar en cada momento. \\
 
-The results of this produce a hub-and-spoke network in which
-all nodes can connect two another nodes in a limited number
-of flights, origin to hub, and then hub to destination.
-However this system is lost the more nodes there are,
-eventually leading into a complex system. \\
-
-However hub-and-spoke networks can break if there is no
-defined hub to choose from, or if simply their is too much
-noise to allow one to form.
+Este resultado produce una red de ``hub-and-spoke'' en dónde todos los nodos se pueden conectar a cualesquiera otros dos nodos en un número limitado de vuelos, del origen al ``hub'' y de ahí a su destino. Este sistema eventualmente se convierte en un sistema complejo entre más nodos halla. No obstante, si no hay un ``hub''
+definido para elegir, el ruido es demasiado cómo para formar uno.
 
 \end{document}
