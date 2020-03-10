@@ -28,68 +28,46 @@
 \end{flushright}
 
 \begin{center}
-    {\LARGE Lectura 13}\\
-    {\LARGE A Dynamical Model For The Air Transportation Network}
+    {\LARGE Proyecto}\\
 \end{center}
-Scheduled networks is a recently developed tool that allows us to
-define an algorithm to simulate the growth of a network, in this case
-air transportation networks. \\
-
-A network like this has a lot of complex interactions which can make
-it difficult to study. However an instrument which helps us with this
-is Complex Network theory. \\
-
-These networks use nodes that are connected through hubs following a 
-given topology. Although powerful, the structure is considered static
-in the sense of time. To overcome this problem, we use scheduled
-networks which activates nodes based on external information, like
-time for example. \\
-
-First, we define a static directed network, in which n nodes are 
-connected through links in a adjacency matrix A$_{nxn}$, where each
-value a$_{ij}$ has a value of one if there exists a link between two
-nodes i and j. Now we modify it so that we can include the time
-needed to travel to a connection. We add secondary nodes to some of
-the primary nodes, which we use as schedulers. These secondary nodes
-don't exist in the actual system. The adjacency matrix is now a
-differential adjacency matrix. This matrix is constant and holds one
-time step, while an activation matrix holds the scheduling 
-information. \\
-
-The global matrix however, is a matrix of m x m sides, where m is
-the sum of primary and secondary nodes. This matrix S is represented
-as:\\
-$A = [ P \| R ] / [Act \| T]\\$
-Where P, R, Act, and T are submatrixes, with P in the top left, R top 
-right, Act bottom left and T bottom right. We can defome these matrixes as:
+Nuestor proyecto va a consistir en un sistema que simula un juego de role.
+Como un juego de role es complicado, vamos a solo tomar los siguientes
+caracteristicas. 
 \begin{itemize}
-    \item P: The original identity matrix
-    \item ACT: The schedule matrix, which is updated at each step
-    \item R: Moves an agent from a secondary to primary node at the end of a link
-    \item T: The transfer matrix which simulates the passage of time
+    \item Existen ciudades a que pertenecen numero 
+    arbitrarios caracters.
+    \item Los caracteres pueden ser de uno de 3 clases, que
+    tienen un role importante al inicio, medio y final del
+    tiempo
+    \item Existen monstros que mueven por el mundo
+    \item Los caracters salen de ciudades para recoger tesoros
+    \item Los monstros pueden attacar a los caracters
+    \item Si un caracter gana contra un monstro, gana
+    experiencia
+    \item Si un caracter gana suficiente experiencia, gana un nivel
+    \item A lo mas 6 caracters pueden unirse para formar un equipo
+    \item Los caracteres buscan tesoros para traer los a los
+    ciudades que pertenecen, dode los ciudades crecen con mas
+    tesororos que les dan los caracters
+    \item Si los caracters recogen suficiente tesoros, pueden
+    comprar armas para simular la ganacia de un nivel
+    \item Los monstros ganan poder atravez del tiempo
+    \item Los monstros pueden destruir un ciudad si el
+    poder que tienen sobre pasa que tan grande es una ciudad
 \end{itemize}
-We can then chain together these matrix's in order obtain the time
-window, which we can represent as:
-\begin{center}
-    A = A(t) ... A(t + $\delta$ -1) A(t + $\delta$) = \\
-    = \prod$^{t+1}_{p=t}$[dA + Act(p)]
-\end{center}
+De esto, queremos ver que suele ser mas importante atravez del tiempo.
+Los niveles y numero de los caracteres que pertenecen a un ciudad, los
+tipos de clases que consituyen equipos, o la cantidad de tesoros que
+se entrega para que puede crecer y protegerse una ciudad. \\
 
-We can then simulate the airline transportation as a group of
-non-connected nodes, and at each time step we add another
-flight to the system. Then to determine the connection we
-ask which flight would minimize the global cost using a 
-greedy algorithm. \\
+Entonces los datos que quermos tomar son los clases que
+consituyen los equipos, sus niveles y la cantidad de tesoros
+que se recogen atravez del tiempo. \\
 
-The results of this produce a hub-and-spoke network in which
-all nodes can connect two another nodes in a limited number
-of flights, origin to hub, and then hub to destination.
-However this system is lost the more nodes there are,
-eventually leading into a complex system. \\
-
-However hub-and-spoke networks can break if there is no
-defined hub to choose from, or if simply their is too much
-noise to allow one to form.
-
+Estamos esperando que los ciudades con un gran numero de
+caracters y tesoros serian los que se quedan hasta el final
+del tiempo, pero tambien quermos saber si los ciudades
+que no tienen muchos tesoros cercanos les importa tener mas
+caracters o pocos para que pueden tener mas experiencia.
 
 \end{document}
