@@ -1,0 +1,75 @@
+\documentclass[a4paper, 12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{bussproofs}
+\usepackage{proof}
+
+\usepackage{geometry}
+\geometry{
+ top=4cm,
+}
+
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\pagestyle{fancy}
+\lhead{jalrod@ciencias.unam.mx}
+\rhead{jeanpaul@ciencias.unam.mx}
+
+\begin{document}
+
+\begin{flushright}
+    Almeida Rodríguez Jerónimo\\
+    Ruiz Melo Jean Paul
+\end{flushright}
+
+\begin{center}
+    {\LARGE Lectura 14}\\
+    {\LARGE A Network Theory Analysis of Football Strategies.}
+\end{center}
+
+A diferencia de otros deportes, el fútbol no se había prestado mucho a mostrar
+análisis de los juegos. Fue hasta hace relativamente poco que se comenzaron a
+sacar datos estadísticos sobre los juegos. Una manera de medir los juegos es
+haciendo una gráfica de pases.\\
+
+El artículo describe la red dirigida de un equipo basándose en los pases. Cada
+jugador es un nodo y las flechas existen si un jugador da un pase a otro
+jugador. Se le puede dar peso a las flechas basándose en el número de pases que
+hay de un jugador a otro y en la certeza de los pases. La distancia entre dos
+nodos está dada por $l_{i,j}=\frac{1}{A_{i,j}}$ dónde $A$ es la matriz de
+adyacencia con peso e $i\neq j$. Se busca entonces la menor distancia (no
+necesariamente física) entre cualesquiera dos nodos. Esto nos da una idea de la
+conectividad en las flechas lo cual es importante conocer para poder medir la
+robustez de la red.\\
+
+Algunas medidas que nos ayudan a medir lo antes mencionado son:
+\begin{itemize}
+    \item{\textbf{Centralidad de Cercanía}: Esto nos ayuda a medir qué tan fácil
+        es llegar a un jugador dentro de la gráfica.
+    }
+    \item{\textbf{``Betweenness''}: Esta medida nos muestra a que grado un nodo
+        conecta cualesquiera otros dos. Lo que mide es cómo se mueve el balón
+        entre jugadores y qué tanto afectaría que ese jugador no estuviera.
+    }
+    \item{\textbf{Popularidad}: Qué tantos pases recibe un jugador de otros
+        jugadores.
+    }
+\end{itemize}
+
+Otro aspecto importante a analizar es el clustering, que muestra los nodos
+centrales para llegar de un nodo a otro. Por otra parte, estudiar los cliques
+ayuda a ver que tan ``unido'' es el equipo en términos de grupos de jugadores
+que se pasan entre sí el balón. Un equipo bien conectado tiene un clique maximal
+grande que muestra que hay pases entre sí de casi cualesquiera dos jugadores.\\
+
+Los datos del mundial analizados muestran que los equipos con un ``betweenness''
+distribuido normalmente y un clique grande resultaron ser más exitosos. Según el
+artículo, los equipos que menos tienden a confiar en un número pequeño de
+jugadores tiene mayor probabilidad de ganar.
+
+\end{document}
