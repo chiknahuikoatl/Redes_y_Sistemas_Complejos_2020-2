@@ -1,0 +1,77 @@
+\documentclass[a4paper, 12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{bussproofs}
+\usepackage{proof}
+
+\usepackage{geometry}
+\geometry{
+ top=4cm,
+}
+
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\pagestyle{fancy}
+\lhead{jalrod@ciencias.unam.mx}
+\rhead{jeanpaul@ciencias.unam.mx}
+
+\begin{document}
+
+\begin{flushright}
+    Almeida Rodríguez Jerónimo\\
+    Ruiz Melo Jean Paul
+\end{flushright}
+
+\begin{center}
+    {\LARGE Lectura 15}\\
+    {\LARGE Defining a historic football team.}
+\end{center}
+
+Del dominio de las redes sociales se derivan las redes de pases en el fútbol.
+Estas redes dirigidas consisten en medir la cantidad de pases que hay entre
+cualesquiera jugadores $i$ y $j$ en un momento dado y analizar la información
+que podemos extraer de esta red. El objetivo es encontrar clústers, centralidad
+de ciertos jugadores, etc.\\
+
+El caso de estudio es equipo FCB durante la jornada 2009/2010. Además de
+analizar la red de pases, se toma en cuenta la posición del emisor/receptor, de
+dónde podemos extraer longitud del pase y distancia de la meta, y el tiempo, el
+cual nos dice qué tan rápido se forma una red específica, en este caso se
+analiza principalmente la red de 50 pases.\\
+
+Lo que se pudo observar es que el FCB tiene el coeficiente de clustering más
+alto, que la centralidad de los jugadores es más o menos la misma, forman la
+red de 50 pases más rápido (en promedio 9 mins) que cualquier otro equipo,
+tienen el juego más horizontal, es decir, que mantienen los pases de lado a lado
+de la cancha más que moverse hacia la otra portería, entre otras propiedades
+observables. El FCB resalta bajo estos parámetros con respecto a otros equipos,
+lo cual puede ser lo que le de su ventaja estratégica.\\
+
+Aunque algunas de la propiedades anteriores son específicas del FCB (en otros
+equipos no otorgan los mismos resultados, en el caso del Valencia FC, a
+diferencia del FCB, un coeficiente de dispersión alto les resultó en más goles)
+se pueden observar propiedades generales, por ejemplo, que cuándo se va a anotar
+un gol, el juego es frontal (se carga hacia la portería del equipo que va a ser
+anotado) o que el número de pases está directamente relacionado con el tiempo de
+posesión del balón entre otros.\\
+
+Finalmente, se observó que:
+\begin{itemize}
+\item{el FCB (gracias a su estrategia de juego) tiene la capacidad de limitar el
+    espacio jugable de la cancha.}
+\item{Hay dos etapas de juego: jugar el balón y recuperarlo. Al:
+    \begin{itemize}
+    \item[Recuperarlo:]{Ir directo por el balón y ponerlo en juego.}
+    \item[Jugarlo:]{El objetivo es encontrar el mejor momento para meter gol con
+        el apoyo de un clúster de 3 jugadores y otros dos de apoyo más externos.
+    }
+    \end{itemize}
+}
+\end{itemize}
+
+\end{document}
