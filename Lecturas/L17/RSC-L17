@@ -1,0 +1,63 @@
+\documentclass[a4paper, 12pt]{report}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{bussproofs}
+\usepackage{proof}
+
+\usepackage{geometry}
+\geometry{
+ top=4cm,
+}
+
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath}
+
+\pagestyle{fancy}
+\lhead{jalrod@ciencias.unam.mx}
+\rhead{jeanpaul@ciencias.unam.mx}
+
+\begin{document}
+
+\begin{flushright}
+    Almeida Rodríguez Jerónimo\\
+    Ruiz Melo Jean Paul
+\end{flushright}
+
+\begin{center}
+    {\LARGE Lectura 17}\\
+    {\LARGE What happens to google maps when tectonic plates move}
+\end{center}
+Debido a que el mundo esta en constante cambio, por ejemplo los movimentos de los placas tectonicas
+various mapas se pueden suceder que no estan concurente, por ejemplo si estas al medio
+de la calle, y buscas en Google Maps para ver tu posicion, puedes estar a una distancia de tu
+posicion real.\\
+
+En general, el rango de diferencia puede estar de 1 a 50 metros, esto occure debido a que se
+estan intentando ver imagenes de espacio a una cuadricula de longitud y latitud. Para ayudar
+con esto se usan marcas de encuesta, los cuales son checados para ver si aun estan en
+el posicion que deben de estar. \\
+
+Agencias como NGS revisan a estos con poco frecuencia, debido a que no tienen los recursos para
+hacerlo frecuentemente. Pero hay otros errors que pueden resultar en inexactitudes. Uno de estos
+es que los datos se tienen que poner sobre un modelo de la tierra. Esto es donde las placas
+tectonicas se pueden notar. Hay dos mapas principales en estados unidos, donde la mayoria
+son basados en NAD 83, y GPS y Google Maps son basados en NAD 84. \\
+
+El 83 es usado con un proposito civil y enfocado en solo estados unidos, mientras que
+84 pierda exactitud para un generalizacion de todo la tierra. Cuando se cambio a 83, hubo un 
+gran cambio ya que se estaban actualizando con las mapas militares viejos y el actual. Pero
+desde ese momento se empezaron a separarse de nuevo. \\
+
+Actualmente se quiere tener una sistema que puede actualizar las mapas en tiempo real,
+no cada 3 anios como se hace actualmente. Ademas la mapa actual tiene su centro de la
+tierra mal por 2 metros. Esto se piensa actualizar durante este anio. \\
+
+Aunque para proyectos pequenios no es muy importante, para proyectos grandes si importa que
+norte america se esta moviendo algunas pulgadas cada anio. Esto se incrementa con los
+terremotos, ya que se puede notar muy bien que hubo un movimiento entre las placas
+despues de uno grande, o despues de varios pequenios.
+\end{document}
