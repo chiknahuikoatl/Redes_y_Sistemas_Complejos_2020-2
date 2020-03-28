@@ -4,7 +4,6 @@ import java.util.Random;
 class Character{
     int posX, posY;
     int direction;
-    boolean carrying;
     int level;
     double attackHit;
     double attackDamage;
@@ -25,21 +24,32 @@ class Character{
                      100000, 120000, 140000, 165000, 195000,
                      225000, 265000, 305000, 355000};
 
+    int carrying;
+    int amountSpent;
+    int itemLevel;
+    boolean inCity;
+
     Character(int posX, int posY, int direction){
 	this.posX = posX;
 	this.posY = posY;
 	this.direction = direction;
-	this.carrying = false;
+	this.carrying = 0;
 	this.level = 1;
 	this.currentXP = 0;
+	this.inCity = true;
+	this.amountSpent = 0;
+	this.itemLevel = 0;
 
 	switch(rnd.nextInt(2)){
 	case 0:
 	    fighter();
+	    break;
 	case 1:
 	    ranger();
+	    break;
 	default:
 	    mage();
+	    break;
 	}
     }
 
@@ -83,6 +93,7 @@ class Character{
     }
 
     public void levelUp(){
+	this.level = level + 1;
 	this.attackHit = attackHit + attackHitGrowth;
 	this.attackDamage = attackDamage + attackDamageGrowth;
 	this.health = health + healthGrowth;
@@ -90,16 +101,39 @@ class Character{
 	this.AC = AC + ACGrowth;
     }
 
-    public void leveledUP(){
+    public void leveledUp(){
 	int xp = this.currentXP;
+	if(!(this.level == 20))
+	    for(int i = this.level; i < 20; i++){
+		if(xp > levelXP[i-1]){
+		    levelUp();
+		}else
+		    break;
+	    }
+    }
 
-	for(int i = this.level; i <= 18; i++){
-	    if(xp < levelXP[i]){
-		this.level++;
-		levelUp();
-	    }else
-		break;
+    public void buyItem(){
+	switch(itemLevel){
+	case 0:
+	    if(amountSpent > 500)
+		      boughtItem();
+	    break;
+	case 1:
+	    if(amountSpent > 2000)
+		    boughtItem();
+	    break;
+	case 2:
+	    if(amountSpent > 20000)
+		    boughtItem();
+	    break;
 	}
+    }
+
+    public void boughtItem(){
+	this.attackHit = attackHit + 1;
+	this.AC = AC + 1;
+	this.attackDamage = + 1;
+	this.itemLevel = this.itemLevel + 1;
     }
 
 }
