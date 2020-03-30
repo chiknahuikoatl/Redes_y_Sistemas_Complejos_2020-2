@@ -46,25 +46,25 @@ iteraciones según las propiedades de los actores del sistema.
 %%%%%%%%%%%%%%%%
 % Introduction %
 %%%%%%%%%%%%%%%%
-% ------------------------------------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------------------------
 
 \subsection*{Introducción}{
     El sistema que diseñamos está formado de tres partes: casillas, personajes y
     monstruos.
     De esto, queremos ver que suele ser mas importante através del tiempo.
-    El número de personajes (y sus niveles) que pertenecen a una ciudad, los
-    tipos de clases que consituyen equipos, o la cantidad de tesoros que
-    se necesitan para que una ciudad pueda crecer y protegerse. \\
-
-    Entonces, los datos que quermos tomar son las clases que
-    consituyen los equipos, sus niveles y la cantidad de tesoros
-    que se recogen atravez del tiempo. \\
-
-    Estamos esperando que las ciudades con un gran numero de
-    personajes y tesoros sean las que se queden hasta el final
-    del tiempo, pero tambien queremos saber cómo se afecta el crecimiente de
-    las ciudades que no tienen muchos tesoros cercanos; si les importa tener muchos
-    o pocos personajes, etc.
+    % El número de personajes (y sus niveles) que pertenecen a una ciudad, los
+    % tipos de clases que consituyen equipos, o la cantidad de tesoros que
+    % se necesitan para que una ciudad pueda crecer y protegerse. \\
+    %
+    % Entonces, los datos que quermos tomar son las clases que
+    % consituyen los equipos, sus niveles y la cantidad de tesoros
+    % que se recogen atravez del tiempo. \\
+    %
+    % Estamos esperando que las ciudades con un gran numero de
+    % personajes y tesoros sean las que se queden hasta el final
+    % del tiempo, pero tambien queremos saber cómo se afecta el crecimiente de
+    % las ciudades que no tienen muchos tesoros cercanos; si les importa tener muchos
+    % o pocos personajes, etc.
 }
 
 \subsection*{Descripción del Sistema}{Los tres elementos principales de nuestro
@@ -106,8 +106,48 @@ iteraciones según las propiedades de los actores del sistema.
         \item Los monstruos pueden destruir una ciudad si el poder que tienen
             sobrepasa el tamaño de una ciudad.
     \end{itemize}
-
 }
+\subsection*{Marco Teórico}{}
+\subsection*{Metodología}{
+    Esta Investigación consiste de dos programas: uno que simula el sistema y
+    genera los datos y otro que analiza los datos y nos del cual extraeremos la
+    información.
+    \subsubsection*{Simulador} El programa simulador está escrito en JAVA y
+        consiste de las siguientes clases:
+        \begin{itemize}
+        \item{\textbf{Proyecto: }Es la ``columna vertebral'' del sistema. Se
+            encarga de la representación gráfica del mundo, de crear a los
+            elementos que le componen y de proporcionar los métodos para que los
+            agentes se muevan dentro del mundo y exploren su espacio de
+            búsqueda.
+        }
+        \item{\textbf{World: }Es la estructura del mundo en sí. Su estructura
+            principal es una matriz bidimencional de celdas (Cell) que
+            representa un plano del mundo. Tiene una lista de ciudades y lleva
+            la cuenta del número de tesoros y de jugadores que hay en un momento
+            dado dentro del mundo. También el mundo tiene un calendario de años,
+            meses y días para representar el paso del tiempo.
+        }
+        \item{\textbf{Cell: }La celda es el elemento básico del plano del mundo.
+            Una celda almacena la información sobre el tipo de entidades que se
+            encuentran en su posición. Marca si hay una ciudad, algún equipo de
+            jugadores, monstruo o tesoro. En caso de que haya un tesoro, marca
+            el valor del tesoro.
+        }
+        \item{\textbf{City: }Una ciudad consiste de un par de coordenadas que
+            dan su posición dentro del mundo. Tiene un nivel, una cantidad de
+            riqueza, un rango de frontera y un número de habitantes. Estos
+            cuatro atributos denotan su nivel de desarrollo. Además, cada
+            ciudad tiene una lista de los equipos.
+        }
+        \item{\textbf{Character: }}
+        \item{\textbf{Party: }}
+        \item{\textbf{Monster: }}
+        \end{itemize}
+}
+\subsection*{Resultados}{}
+\subsection*{Conclusiones}{}
+
 
 
 
