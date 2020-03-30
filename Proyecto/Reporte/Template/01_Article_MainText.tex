@@ -112,7 +112,7 @@ iteraciones según las propiedades de los actores del sistema.
     Esta Investigación consiste de dos programas: uno que simula el sistema y
     genera los datos y otro que analiza los datos y nos del cual extraeremos la
     información.
-    \subsubsection*{Simulador} El programa simulador está escrito en JAVA y
+    \subsubsection*{Simulador}{El programa simulador está escrito en JAVA y
         consiste de las siguientes clases:
         \begin{itemize}
         \item{\textbf{Proyecto: }Es la ``columna vertebral'' del sistema. Se
@@ -138,13 +138,50 @@ iteraciones según las propiedades de los actores del sistema.
             dan su posición dentro del mundo. Tiene un nivel, una cantidad de
             riqueza, un rango de frontera y un número de habitantes. Estos
             cuatro atributos denotan su nivel de desarrollo. Además, cada
-            ciudad tiene una lista de los equipos.
+            ciudad tiene una lista de los equipos que añaden a su desarrollo
+            cuándo salen a buscar tesoros.
         }
-        \item{\textbf{Character: }}
-        \item{\textbf{Party: }}
+        \item{\textbf{Party: }Un equipo es un conjunto de personajes que pasean
+            por el mundo en búsqueda de tesoros para llevar a su ciudad y de
+            monstruos para subir de nivel. Cada equipo consta de distintos
+            tipos de personajes almacenados en una lista. El equipo tiene un par
+            de coordenadas para posicionarse en el mundo y una dirección que, al
+            ser un autómata celular, le sirve para conocer el siguiente ``paso''
+            que va a dar en el mundo.
+        }
+        \item{\textbf{Character: }El personaje es el actor atómico del sistema.
+            Cada personaje tiene un nivel de ataque base, daño, salud máxima y
+            actual y ritmo de crecimiento de ataque y salud al subir de nivel.
+            Hay tres tipos de personajes:
+            \begin{itemize}
+            \item{Fighters: Son fuertes y tienen mucha salud al inicio del
+                juego pero al avanzar de nivel su poder no incrementa mucho.
+            }
+            \item{Mage: Inician cómo los personajes más débiles y con poca
+                salud pero su incremento de poder es grande conforme van
+                subiendo de nivel.
+            }
+            \item{Ranger: Este personaje es el punto medio entre los dos
+                anteriores. Inicia con salud y fuerza media y su ritmo de
+                incremento es menor que el de un mago pero mayor que el de un
+                luchador.
+            }
+            \end{itemize}
+            Los personajes pueden decidir si atacan a un monstruo o no
+            dependiendo de su nivel y fuerza.
+        }
         \item{\textbf{Monster: }}
         \end{itemize}
+
+        El programa guarda en un archivo los datos de cada elemento de la
+        simulación para después analizarlos.
+    }
+    \subsubsection*{Analizador de Datos}{
+        Esta parte del programa está programada en Python ya que tiene una
+        amplia biblioteca para analizar redes.
+    }
 }
+
 \subsection*{Resultados}{}
 \subsection*{Conclusiones}{}
 
