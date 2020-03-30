@@ -180,13 +180,15 @@ iteraciones según las propiedades de los actores del sistema.
             los personajes que lo derrotaron.
         }
         \end{itemize}
-        Además, debemos notar una interacción entre los equipos y monstruos, que
-        se llama batalla. Lo cual simula una batalla entre aquellos actores.
-        Toman turnos, tal que los equipos van primero, que cuando todo los
-        personajes o monstruos de un lado tienen que su vida llega a cero,
-        se mueren. El ganador gana los tesoros del derrotado, y experiencia
-        basado en el nivel de su oponente.\\
-        
+        Existe una interacción entre equipos y monstruos que se llama batalla la
+        cual, cómo su nombre lo indica, simula una batalla entre estos actores.
+        La batalla se desarrolla por turnos (los equipos tienen el primer turno)
+        y según los puntos de ataque del atacante en turno se reduce la vida del
+        otro enemigo. Eventualmente, cuándo toda la vida (el nivel de salud) de
+        todos los personajes o del monstruo llega a cero, se mueren. El ganador
+        obtiene los tesoros del derrotado y experiencia basado en el nivel de su
+        oponente.\\
+
         Este programa guarda en un archivo los datos de cada elemento de la
         simulación para después analizarlos. Los datos se guardan dentro de la
         carpeta \texttt{archivos}.
