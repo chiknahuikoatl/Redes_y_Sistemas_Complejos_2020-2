@@ -1,0 +1,291 @@
+% Please give the surname of the lead author for the running footer
+\leadauthor{Almeida \& Ruiz}
+
+% info about NM-BC format: https://www.nature.com/nmeth/about/content
+
+\title{Modelación del Juego \dnd cómo Sistema Dinámico.}
+%NM-BC: The title is limited to 10 words (or 90 characters)
+\shorttitle{DnD$\_$CS}
+
+% Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
+\author[1,2\space *]{Almeida Rodríguez, Jerónimo}
+\author[1,2\space *]{Ruiz Melo, Jean Paul}
+
+\affil[1]{Universidad Nacional Autónoma de México, UNAM}
+\affil[2]{Facultad de Ciencias UNAM}
+\affil[*]{These authors contributed equally.}
+
+\maketitle
+
+%TC:break Abstract
+\begin{abstract}
+%Lets try to keep the abstract between 70-150 words, I have noticed no guidance
+Las redes son una herramienta muy útil para modelar sistemas complejos, poder
+estudiarlos, extraer información y hacer predicciones sobre el comportamiento
+del mismo. En general los sistemas que se estudian están basados en estructuras
+que existen en la naturaleza, son parte del comportamiento de ciertos fenómenos
+biológicos o resultado del desarrollo social de la humanidad. Este artículo toma
+otro enfoque. En lugar de basarnos en un sistema existente, creamos el nuestro
+basado en las reglas del juego de rol \dnd y simulándolo con autómatas celulares
+con distintos niveles de interacción. El objetivo de este trabajo es encontrar
+los principales tipos de estructuras que se forman después de cierto número de
+iteraciones según las propiedades de los actores del sistema.
+
+\end {abstract}
+%TC:break main
+%the command above serves to have a word count for the abstract
+
+% \begin{keywords}
+%     ImageJ | Fiji | Super-resolution microscopy | Image analysis | Image quality assessment | Fluidics | Resolution | Quantitative imaging | Modelling | Virus | Vaccinia | Pox | Archaea | Sulfolobus acidocaldarius
+% \end{keywords}
+
+% \begin{corrauthor}
+%     p.pereira\at ucl.ac.uk, s.culley\at ucl.ac.uk, r.henriques\at ucl.ac.uk
+% \end{corrauthor}
+
+%%%%%%%%%%%%%%%%
+% Introduction %
+%%%%%%%%%%%%%%%%
+% ------------------------------------------------------------------------------------------------------------------------------------
+
+\subsection*{Introducción}{
+    El sistema que diseñamos está formado de tres partes: casillas, personajes y
+    monstruos.
+    De esto, queremos ver que suele ser mas importante através del tiempo.
+    El número de personajes (y sus niveles) que pertenecen a una ciudad, los
+    tipos de clases que consituyen equipos, o la cantidad de tesoros que
+    se necesitan para que una ciudad pueda crecer y protegerse. \\
+
+    Entonces, los datos que quermos tomar son las clases que
+    consituyen los equipos, sus niveles y la cantidad de tesoros
+    que se recogen atravez del tiempo. \\
+
+    Estamos esperando que las ciudades con un gran numero de
+    personajes y tesoros sean las que se queden hasta el final
+    del tiempo, pero tambien queremos saber cómo se afecta el crecimiente de
+    las ciudades que no tienen muchos tesoros cercanos; si les importa tener muchos
+    o pocos personajes, etc.
+}
+
+\subsection*{Descripción del Sistema}{Los tres elementos principales de nuestro
+    sistema son:
+    \begin{itemize}
+    \item{\textbf{Casillas: }son las localizaciones dentro del mundo. Pueden ser
+        ciudades, contener tesoros o estar vacías. Los personajes y monstruos
+        interactúan con ellas.
+    }
+    \item{\textbf{Personajes: }Son agentes con un cierto grado de inteligencia
+        artificial que les permite buscar y obtener tesoros, luchar o huir de
+        monstruos y/o comprar objetos que le permitan mejorar sus propiedades
+        (ataque, defensa, salud) e incrementar su poder.
+    }
+    \item{\textbf{Monstruos: }Al igual que los personajes, los monstruos son
+        agentes autónomos. Estos atacan ciudades o personajes dependiendo de que
+        tan poderosos sean.
+    }
+    \end{itemize}
+    Un juego de rol consiste de muchas reglas y elementos, así que nosotros nos
+    vamos a enfocar en los siguientes aspectos:
+    \begin{itemize}
+        \item Un número arbitrario de personajes pertenecen a cada ciudad.
+        \item Los personajes pueden ser de una de 3 clases. Cada una de ellas
+            tienen un rol importante al inicio, mitad y final del juego.
+        \item Los monstruos que se mueven por el mundo.
+        \item Los personajes salen de las ciudades para recoger tesoros.
+        \item Los monstruos pueden atacar a los personajes.
+        \item Si un personaje gana contra un monstro, gana experiencia.
+        \item Si un personaje gana suficiente experiencia, sube un nivel e
+            incrementa su poder.
+        \item A lo mas 6 personajes pueden unirse para formar un equipo.
+        \item Los personajes buscan tesoros para traerlos a las ciudades a las
+            que pertenecen. Las ciudades crecen entre más tesororos les traigan
+            los personajes.
+        \item Si los personajes recogen suficientes tesoros, pueden comprar
+            armas incrementar su poder. Esto es independiente de su nivel.
+        \item Los monstruos ganan poder através del tiempo.
+        \item Los monstruos pueden destruir una ciudad si el poder que tienen
+            sobrepasa el tamaño de una ciudad.
+    \end{itemize}
+
+}
+
+
+
+% \subsection*{Introduction}
+% Fluorescence microscopy has been ubiquitously used in biological studies since its invention in the 20\textsuperscript{th} century. It can reveal subcellular structures and interactions between specifically labelled molecules and allows the quantification of their dynamic behaviour in living cells \cite{rino2009frontiers}. Extraction of this biologically relevant quantitative information from fluorescence microscopy data typically requires digital image processing and analysis \cite{wheeler2017standard}. In recent years, Super-Resolution Microscopy (SRM) techniques have extended the spatial resolving power of fluorescence microscopy beyond the diffraction limit \cite{betzig2006imaging,rust2006sub,hell1994breaking}. Most SRM techniques use large quantities of raw data, often reaching several gigabytes to generate a single super-resolution image, thus requiring specialised high-performance image analysis tools. Several SRM image processing packages are available, such as ThunderSTORM \cite{ovesny2014thunderstorm}, LAMA \cite{malkusch2016extracting} and SIMcheck \cite{schermelleh2015simcheck} but each of these is focused on a specific type of SRM modality.
+%
+%  %TC:ignore
+%  \begin{figure}[!t]
+%     \centering
+%     \includegraphics[width=0.8\linewidth]{Figures/FigureMain_v4.png}
+%     \caption{\textbf{NanoJ framework.} Currently NanoJ consists of 5 modules dedicated to super-resolution imaging and analysis.}
+%     \label{fig:GeneralDiagram}
+%  \end{figure}
+%  %TC:endignore
+%
+% %  linewidth: \printinunitsof{in}\prntlen{\linewidth}
+%
+%  Here, we present NanoJ, a highly versatile set of image acquisition and analysis methods developed to improve the reliability and quantifiability of microscopy experiments, with a particular focus on the demands of live-cell SRM. NanoJ is available as a series of ImageJ-based plugins which can be used independently or concomitantly. NanoJ (Fig. \ref{fig:GeneralDiagram}) is comprised of the following modules: \textbf{NanoJ-Core} - general image correction tools including drift correction and channel registration, both based on cross-correlation analysis; \textbf{NanoJ-SRRF} - an analytical approach capable of extracting super-resolution data from a short sequence of diffraction-limited images, which can be acquired using most microscopes \cite{gustafsson2016fast,culley2018srrf}; \textbf{NanoJ-SQUIRREL} - an algorithm to evaluate resolution and the presence of artefacts in super-resolution images \cite{culley2018quantitative}; \textbf{NanoJ-VirusMapper} - a single-particle analysis method to generate nanoscale models of biological structures such as viruses \cite{gray2016virusmapper,gray2017open,gray2018nanoscale}; \textbf{NanoJ-Fluidics} - a hardware and software framework to control fluidics devices, enabling automation of multiplexed experiments \cite{almada2018automating}. Thus, the NanoJ framework is capable of solving common imaging problems with broad biological applications and is compatible with a multitude of fluorescence microscope setups and experimental protocols.
+%
+% \subsection*{The NanoJ framework}
+%  NanoJ has been designed to integrate with the popular ImageJ or Fiji image analysis software \cite{abramoff2004image,schindelin2012fiji} and is easily installed as a standard set of plugins. NanoJ is also fully open-source and user-friendly. The graphical user interfaces (GUIs) are straightforward to use and its routines can be easily integrated within larger image analysis pipelines through the ImageJ macro language.
+%
+%  NanoJ is designed to be an accessible tool for both non-expert users and developers. Each of its modules possess their own separate manual and documentation. NanoJ is implemented in both Java (\href{https://www.java.com/}{https://www.java.com/}) and OpenCL (\href{https://www.khronos.org/opencl}{https://www.khronos.org/opencl}), the latter language being used for high-performance analysis of image data through the use of Graphical Processing Units (GPUs). To date, it encompasses four Java ARchive (JAR) packages (NanoJ-SRRF, NanoJ-SQUIRREL, NanoJ-VirusMapper, NanoJ-Fluidics) that all depend on a central package (NanoJ-Core). The core package hosts the libraries that enable high-performance GPU-based computing analysis and a set of basic image analysis helper methods. The modular nature of NanoJ means that its components can be updated independently and the framework can be easily extended by appending new analytic packages.
+%
+% \subsection*{NanoJ-Core: Drift Correction}
+%  Sample drift commonly occurs during the acquisition of SRM data, often as a result of gradual changes in the temperature of microscope components. Drift introduces motion blur artefacts and thereby a loss of resolution. While most modern microscopes have an active focus-lock device that stabilises the motion of the sample in the axial direction (minimising focal drift), the sample will still be prone to lateral movement (Fig. \ref{fig:DriftCorrection}a). However, in the case where the raw data is made up of a sequence of consecutive frames acquired rapidly, as is common in SRM methods such as Single Molecule Localization Microscopy (SMLM) \cite{betzig2006imaging,rust2006sub} or fluctuation-based approaches \cite{gustafsson2016fast,dertinger2009fast,cox2012bayesian}, this lateral drift can be estimated (Fig. \ref{fig:DriftCorrection}b) and analytically corrected for each time frame via post-processing (Fig. \ref{fig:DriftCorrection}c-d).
+%
+%   %TC:ignore
+%  \begin{figure}[!t]
+%     \centering
+%     \includegraphics{Figures/FigureDrift_v2.png}
+%     \caption{\textbf{Drift correction with NanoJ-Core.} \textbf{a)} Composite image of two frames from a time-lapse dataset of the same field-of-view. An artificially large drift was applied computationally in order to make it visible for figure rendering. \textbf{b)} Cross-correlation map (CCM) between the two frames shown in a). The vector position of the maximum indicates the linear shift between the two frames. \textbf{c)} Overlay of the two frames after drift correction using NanoJ-Core. \textbf{d)} Vertical and horizontal drift curves obtained using NanoJ-Core from the 100-frame raw data. The two images shown in a) correspond to the frames 0 (green) and 97 (magenta) of the raw data.}
+%     \label{fig:DriftCorrection}
+%  \end{figure}
+%  %TC:endignore
+%
+%  NanoJ breaks the task of drift correction into two distinct parts: estimation, followed by translation. As a first step, NanoJ-Core estimates the linear drift between two images by calculating their cross-correlation matrix (CCM) (Fig. \ref{fig:DriftCorrection}b). The location of the peak intensity in the CCM determines the linear shift between the two images, and precise sub-pixel accuracy is achieved by up-scaling the CCM using a bicubic spline interpolation. Depending on the type of acquisition, the reference frame can either be the first frame of the raw data or the immediately preceding frame. Fig. \ref{fig:DriftCorrection}d shows the drift in a 100-frame dataset as measured with respect to the first frame. Once drift is estimated, the dataset can be directly corrected by analytically translating each individual frame using a bicubic spline interpolation (Fig. \ref{fig:DriftCorrection}c). The interpolation process will, however, change the noise properties of the resulting dataset \cite{blaysat2016effect}, which can have an influence on further analysis requiring specific assumptions in noise properties such as Maximum Likelihood Estimation (MLE) single-molecule localization analyses.
+%
+%  For the specific case of SMLM datasets with sparse blinking, there will only be a weak correlation across frames, as there is little observable structure conserved between consecutive time points. One common strategy to alleviate this low correlation is to add fiduciary landmarks to the sample, such as static fluorescent beads. As an option NanoJ-Core can temporally bin images within the dataset, thus increasing the correlation between frames and allowing their shift to be more accurately estimated \cite{mlodzianoski2011sample}.
+%
+%  Drift estimation in NanoJ differs from strategies applied by other SRM algorithms, such as ThunderSTORM \cite{ovesny2014thunderstorm}, by analysing unprocessed raw data instead of post-processed super-resolution reconstructions. This allows the estimation to be decoupled from the super-resolution image reconstruction algorithm and hence drift-corrected raw data can be analysed using a wider range of methods including SRRF and SOFI \cite{dertinger2009fast}. Furthermore, NanoJ-SRRF (as described in a following section) can import the drift curve (Fig. \ref{fig:DriftCorrection}d) created by NanoJ-Core Drift Correction and use this information directly during analysis without the need to pre-translate each frame in the raw dataset.
+%
+% \subsection*{NanoJ-Core: Channel registration}
+%  In multicolour fluorescence microscopy, images acquired in different spectral channels are often misaligned as a result of chromatic aberrations in the optical path and the use of different filter sets for each colour. This misalignment is frequently ignored in conventional microscopy as it typically occurs on a scale smaller than the diffraction limit. However, this effect becomes non-negligible in the context of SRM \cite{erdelyi2013correcting}. Channel registration is therefore essential for multicolour SRM studies quantifying colocalization or interactions between different structures \cite{bock2007two,van2009multicolor,niekamp2017high}. Advanced imaging research groups tend to develop their own analysis scripts for their particular applications, and thus no user-friendly tools are readily available. Therefore, NanoJ-Core Channel registration offers a unique tool to perform this registration easily and robustly on a wide variety of datasets.
+%
+%  The shift between different spectral channels is usually inhomogeneous across a field of view, which prevents the use of typical CCM-based approaches such as the one described for NanoJ-Core Drift Correction. In order to characterise the spectral misalignment across a field of view, it is necessary to image a sample where the same structure can be observed across all spectral channels of interest. Furthermore, the sample should contain structures occupying the whole field of view. A typical sample for this characterisation is a coverslip coated with a large number of beads labelled with multiple fluorescent dyes \cite{demmerle2017strategic}. Following multicolour imaging of this sample, NanoJ-Core can be used to calculate a non-linear two-dimensional spatial transform describing the misalignment for each channel relative to a reference channel. Given that chromatic misalignment is a fixed property of an optical system, NanoJ-Core can then apply these transforms to realign other multicolour datasets acquired using the same optical path (Fig. \ref{fig:ChannelAlignment}) \cite{arganda2006consistent,annibale2012identification}.
+%
+%  To generate these non-linear misalignment fields NanoJ-Core first calculates local, linear misalignments between channels (Fig. \ref{fig:ChannelAlignment}a). This is achieved by dividing the image into small areas ("blocks"). For each block, the shift is calculated by finding the cross-correlation peak position as shown in Fig. \ref{fig:DriftCorrection}a, b. These local shift values are then interpolated across the whole field-of-view using an inverse distance weighting interpolation \cite{shepard1968two}. This generates two smooth shift maps describing the misalignments in the horizontal and vertical directions (Fig. \ref{fig:ChannelAlignment}b). For a given channel, each pixel value within the horizontal/vertical shift map indicates the horizontal/vertical displacement that needs to be applied to that pixel to align it with the reference channel. NanoJ-Core can then be used to apply these maps to align channels in the dataset of interest (Fig. \ref{fig:ChannelAlignment}), provided they have been acquired using the same optical configuration.
+%
+%  \begin{figure}[!t]
+%     \centering
+%     \includegraphics{Figures/FigureChannelAlignment_v4.png}
+%     \caption{\textbf{Multi-colour channel registration with NanoJ-Core.} \textbf{a)} Composite image of multi-colour TetraSpeck™ beads imaged in two different channels ("GFP-channel" indicated in green and "mCherry-channel" in magenta), prior to (left) and after (right) channel registration using NanoJ-Core. Insets - individual beads from indicated locations. Scale bars: 25 \micro m, insets: 0.5 \micro m. \textbf{b)} Vectorial representation of the shift between the two channels (left, displacement vector length 50 times larger for representation purposes), horizontal (middle) and vertical (right) shift maps obtained and applied to the data shown in a). Scale bars: 25 \micro m.}
+%     \label{fig:ChannelAlignment}
+%  \end{figure}
+%
+%  NanoJ-Core performs the channel registration by creating a new image representing each channel, where the intensity value for each pixel coordinate corresponds to the intensity value from the original image at the equivalent coordinate corrected for local shift. For cases in which these coordinates are not discrete (sub-pixel shift), a bicubic spline interpolation is used to recover pixel values in continuous space. Because the shift map can be extrapolated to continuous space, the registration procedure obtained from diffraction-limited images can also easily be used to correct super-resolved images obtained using the same optical configuration.
+%
+% \subsection*{NanoJ-SRRF: Live-Cell Super-Resolution Imaging}
+%  As part of the NanoJ framework, we include our recently developed SRM reconstruction algorithm Super-Resolution Radial Fluctuations (SRRF), which is able to extract sub-diffraction information from a short burst of images acquired at high-speed with modern fluorescence microscopes \cite{gustafsson2016fast,culley2018srrf}. SRRF is a purely analytical approach. It alleviates the need to use toxic photoswitching-inducing buffers \cite{henriques2011palm}, specialised fluorophores \cite{dempsey2011evaluation,henriques2009palm}, damaging high-intensity illumination \cite{waldchen2015light} or specialised equipment \cite{gustafsson2000surpassing,hell1994breaking} when compared to other SRM methods \cite{betzig2006imaging,rust2006sub,gustafsson2000surpassing,hell1994breaking}.
+%
+%  %TC:ignore
+%  \begin{figure}[!t]
+%     \centering
+%     \includegraphics{Figures/FigureSRRF_v6.png}
+%     \caption{\textbf{Live-cell super-resolution microscopy with NanoJ-SRRF.} \textbf{a)} Comparison of widefield (left) and SRRF reconstruction (right) obtained from a Cos7 cell expressing UtrCH-GFP to label actin filaments. Scale bar: 5 \micro m. \textbf{b)} Time-course of the inset shown in a), obtained from  a continuous imaging at 30 ms exposure (33.3 Hz) and displayed every 30 s. Scale bar: 1 \micro m. \textbf{c)} Colour-coded time course dataset from b). Scale bar: 1 \micro m.}
+%     \label{fig:SRRF}
+%  \end{figure}
+%  %TC:endignore
+%
+%  SRRF is based on similar principles to SMLM, with the key difference that it does not rely on the detection of spatio-temporally isolated fluorophores. Instead, SRRF generates a magnified pixel grid where each pixel value relates to the probability of fluorophores existing in that corresponding region of space. To do this, SRRF calculates the local radial symmetry ('radiality') in each pixel of the magnified image using local intensity gradient information. The obtained radiality value will be high when a point-spread-function (PSF) profile transiently becomes dominant, highlighting the presence of a fluorescent molecule at that location. Furthermore, the fluctuations of radiality values follow the underlying natural intensity fluctuations of fluorophores, which have a distinct temporal signature to that of noise \cite{dertinger2009fast}. Therefore, a temporal correlation of the radiality at each pixel can be projected into a final image, where the structures of interest will be better resolved.
+%
+%  Thanks to its low-illumination requirement, SRRF is highly suited to enable live-cell SRM and allows for long SRM time-lapse acquisitions \cite{culley2018srrf}. Fig. \ref{fig:SRRF} shows a typical live-cell SRRF acquisition of a Cos7 cell expressing UtrCH-GFP (a probe for actin filaments) imaged at 33.3 Hz. The dataset shown is part of a longer > 30 min time-course dataset (Fig. \ref{fig:supSRRFmovie}). SRRF allows the observation of protein dynamics (e.g. actin) during long periods with no perceivable phototoxicity.
+%
+%  NanoJ-SRRF, the software implementation of the SRRF algorithm, uses GPU computing whenever possible to accelerate radial symmetry calculations. This is achieved by implementing part of its analytic engine in OpenCL, with a fallback of execution to the CPU if a compatible graphics card is not detected.
+%
+% \subsection*{NanoJ-SQUIRREL: Estimating Image Quality}
+%  SRM techniques are more complex than conventional diffraction-limited microscopy. This complexity arises from the sample preparation requirements (SMLM), the microscope hardware (stimulated emission depletion microscopy or STED, Structured Illumination Microscopy or SIM) and the post-acquisition image processing (SMLM, SIM). Unsuitable choices in any of these underlying variables can lead to artefacts within the final image and the potential for false conclusions to be drawn. NanoJ-SQUIRREL (Super-resolution Quantitative Image Rating and Reporting of Error Locations) is an algorithm that highlights the presence of artefacts in super-resolution images. It does so by calculating quantitative maps showing both local SRM image quality and resolution \cite{culley2018quantitative} and can thus be used to optimise acquisition workflows \cite{culley2018srrf}.
+%
+%  The central concept of SQUIRREL is that a diffraction-limited image and the corresponding SRM image of the same region should contain the same underlying structure, just at different resolutions. Thus, the diffraction-limited image can be treated as a high-confidence benchmark against which the SRM image can be compared. The SQUIRREL image quality assessment algorithm formalises this comparison analytically.
+%
+%  NanoJ-SQUIRREL quality assessment requires the user to provide an acquired diffraction-limited image and the SRM image of the same structure (Fig. \ref{fig:SQUIRREL}a). As both images represent the underlying fluorophore distribution but at different resolutions, there exists a blurring function that can convert the SRM image into its diffraction-limited equivalent. SQUIRREL calculates this blurring function and applies it to the SRM image. The blurred image is then compared against the diffraction-limited reference. This generates three quality indicators. An error map is produced that maps the discrepancy between the blurred SRM image and the reference image at every pixel (Fig. \ref{fig:SQUIRREL}b). This highlights regions where the super-resolution image is inconsistent with the reference image. For example, the three insets in Fig. \ref{fig:SQUIRREL}b show typical SMLM artefacts including incomplete structures and inter-structure mislocalization. Two global quality metrics are also generated for each image: the RSP (Resolution Scaled Pearson’s Correlation Coefficient) and the RSE (Resolution Scaled Error). The RSP can take a value in the interval [-1,1] and describes the structural agreement between the blurred super-resolution and reference images. Here, higher values indicate better agreement, with an RSP of 1 indicating a perfect structural match. The RSE describes the mean intensity mismatch between the blurred super-resolution and reference images; in this case lower values represent better agreement with a value of 0 indicating a perfect intensity match.
+%
+%  %TC:ignore
+%  \begin{figure}[!t]
+%     \centering
+%     \includegraphics{Figures/FigureSQUIRREL_v3.png}
+%     \caption{\textbf{Quality assessment and resolution mapping with NanoJ-SQUIRREL.} \textbf{a)} A super-resolution rendering (left) and acquired widefield image (right) of fixed microtubules labelled with Alexa Fluor-647. \textbf{b)} Left: SQUIRREL error map highlighting discrepancies between the super-resolution and diffraction-limited images in (a). Right: Magnified insets of super-resolution rendering at indicated positions on error map. \textbf{c)} Left: SQUIRREL resolution map of the super-resolution image in (a). Right: Magnified insets of super-resolution rendering for indicated resolution blocks. Whole image scale bars = 5\micro m, inset scale bars = 1\micro m}
+%     \label{fig:SQUIRREL}
+%  \end{figure}
+%  %TC:endignore
+%
+% \subsection*{NanoJ-SQUIRREL: Estimating Image Resolution}
+%  The purpose of SRM is to resolve finer structural detail than is achievable with conventional diffraction-limited microscopy. It is therefore useful to have an objective measurement of resolution within a super-resolution image, for example to enable meaningful analysis and structural hypotheses that stay in line with the actual precision of the data. The current standard for measuring image resolution in SMLM images is Fourier Ring Correlation (FRC) \cite{nieuwenhuizen2013measuring}. This method involves comparing two independently acquired super-resolution images of the same field-of-view so that they only differ by their noise components. For SMLM datasets the two SRM images are usually obtained by splitting localizations from odd and even frames. The correlation between these two SRM images is measured at different frequencies in Fourier space; the frequency at which this correlation drops below a set threshold indicates the resolution of the image.
+%
+%  FRC has been previously implemented in ImageJ \cite{nieuwenhuizen2013measuring}, but only gives a single resolution measurement for the entire field of view. However, resolution is not necessarily homogeneous across the SRM image (Fig. \ref{fig:SQUIRREL}c). This is particularly true for SMLM methods as localization accuracy depends strongly on labelling density and laser illumination intensity, which can both vary considerably within a single field of view. Furthermore, FRC can generate biased measurements for certain fluorophore distributions such as point-like patterns. Therefore, an additional feature of the NanoJ-SQUIRREL plugin is local mapping of FRC resolution across an image. To do this, the user provides an image stack comprising two independent renderings of the same dataset (e.g. through the odd/even frames splitting as described above). The images are then spatially split into equal-sized blocks and FRC analysis is run locally on each block. For blocks where there is insufficient correlation to generate an FRC resolution value, a resolution value is interpolated from neighbouring blocks. Fig. \ref{fig:SQUIRREL}c shows the FRC map obtained from the SRM image shown in (a). This map highlights that the resolution in this image varies between 85 and 36 nm.
+%
+%  It is important to note that high resolution (that is, a low FRC value) does not imply that the super-resolution image has depicted structures correctly; it only means that there is low variation in the locations of the fluorophores between the two rendered images. Therefore, the error mapping functionality within NanoJ-SQUIRREL can complement FRC-mapping in order to obtain a more complete perspective on super-resolution image quality.
+%
+% \subsection*{NanoJ-VirusMapper: Structural Mapping and Modelling}
+%  As part of the NanoJ framework, we include a unique single-particle analysis (SPA) tool called NanoJ-VirusMapper. It is the first open-source, freely available algorithm for unbiased, high-throughput SPA of fluorescence imaging and allows the structural modelling of viruses and other macromolecular complexes \cite{gray2016virusmapper,gray2017open,gray2018nanoscale}. The principle of SPA is to image many identical copies of a structure, independently of its orientation, and align and combine them to build an averaged structural map of the underlying structure with high signal-to-noise ratio \cite{szymborska2013nuclear,laine2015structural,lelek2012superresolution,verdier2017single,sieben2018multicolor}.
+%
+%   \begin{figure}[!t]
+%     \centering
+%     \includegraphics{Figures/FigureVirusMapper_v4.png}
+%     \caption{\textbf{Quantitative SPA-based modelling with NanoJ-VirusMapper.} \textbf{a)} Top: Aligned SIM images of individual vaccinia particles labelled for L4 (core), F17 (lateral bodies, LBs) and A17 (membrane, mem.). Bottom: VirusMapper models of the three channels. Scale bars: 200nm. \textbf{b)} Top: Aligned SIM images of individual \emph{Sulfolobus acidocaldarius} cells labelled for the S-layer (S) and the archaeal ESCRT-III homolog CdvB (CdvB). Bottom: VirusMapper models of three different orientations of the cells; magenta - S-layer, green - CdvB. Scale bars: 1\micro m. }
+%     \label{fig:VirusMapper}
+%  \end{figure}
+%
+%  The SPA implementation of VirusMapper facilitates automatic processing of multiple images to detect, segment, align, classify and average thousands of individual structures. It is entirely general, assuming no underlying symmetry or other properties of the imaged structure. Here, we illustrate this with models of three distinct vaccinia virus substructures \cite{moss2013poxviridae}: core, lateral bodies (LBs) and membrane. All three substructures were labelled on viral particles and imaged with SIM (Fig. \ref{fig:VirusMapper}a, top). VirusMapper can explicitly incorporate information from multiple fluorescence channels to enable multi-component modelling. Here, the images of the LBs and the core were used to find the orientations of each particle in the dataset. This allowed us to create simultaneous models of the three components of the virus (Fig. \ref{fig:VirusMapper}a, bottom).
+%
+%  VirusMapper can also be used to separately model different 3D orientations of a structure. Here, we highlight this capability on a study of the division ring in the thermoacidophilic archaeon \emph{Sulfolobus acidocaldarius}, strain DSM639 (Fig. \ref{fig:VirusMapper}b). \emph{Sulfolobus} cells were labelled for both their outer S-layer and the division ring, as marked by the archaeal ESCRT-III homolog CdvB. The images of the division ring were used to identify different orientations of the cells (Fig. \ref{fig:VirusMapper}b) and separate templates were created using VirusMapper. Parallel models were then generated of the division ring and the S-layer using these templates for each orientation. The models obtained from the two channels can then be overlayed (Fig. \ref{fig:VirusMapper}b, bottom).
+%
+%  VirusMapper is compatible with any fluorescence microscopy method and has been demonstrated with SIM, STED microscopy \cite{gray2016virusmapper} and SMLM (Fig.~\ref{fig:supVM}). The general approach of the method enables it to even be applied to correlative combinations of methods (Fig.~\ref{fig:supVM}).
+%
+% \subsection*{NanoJ-Fluidics: Sample Liquid Exchange}
+%  NanoJ-Fluidics is a hardware and software framework for precise and accurate automated liquids exchange \cite{almada2018automating}. It was developed to enable automation of sample treatment and labelling of live or fixed specimens directly on the microscope stage \cite{almada2018automating, dix2018role}. The NanoJ-Fluidics hardware component is composed of customisable, low-cost and robust LEGO® syringe pumps and a liquid removal peristaltic pump, all controlled by simple Arduino® electronics. It is compatible with off-the-shelf imaging chambers, without the need for any microfabrication. Its control software (the NanoJ-Fluidics module) is ImageJ-based and can be fully integrated with microscopy acquisition software. We have demonstrated the applicability of NanoJ-Fluidics in multiple experimental contexts, including \textit{in-situ} correlative live-to-fixed super-resolution imaging, multimodal super-resolution imaging and event-driven fixation \cite{almada2018automating}. The approach can also be easily extended to protocol optimisation (e.g. titrating antibody concentrations or adjusting imaging buffer composition) or liquid exchange protocols integrated with the imaging (e.g. drug delivery or automated event-driven fixation).
+%
+%  Here, we demonstrate NanoJ-Fluidics by acquiring a high-quality multicolour SMLM dataset, where STORM and DNA-PAINT \cite{jungmann2014multiplexed} imaging strategies are combined into a single workflow (Fig. \ref{fig:PAINT}a). This approach is particularly suited to multi-target imaging \cite{dempsey2011evaluation}, which is difficult to achieve with standard sample preparation techniques due to the low number of suitable fluorophores available for SMLM microscopy. With NanoJ-Fluidics, we can seamlessly perform all labelling steps in an automated and reliable manner directly on the microscope stage. We showcase this using a four-channel acquisition of actin with STORM, and mitochondria, vimentin and clathrin with DNA-PAINT (Fig. \ref{fig:PAINT}b).
+%
+%  NanoJ-Fluidics' highly customisable nature has already spawned several alternative designs from the community (\href{https://github.com/HenriquesLab/NanoJ-Fluidics/wiki}{https://github.com/HenriquesLab/NanoJ-Fluidics/wiki}), which are in constant development. NanoJ-Fluidics makes imaging protocol automation readily available to researchers, hence improving not only the reliability and repeatability of the protocols, but also the range of protocols that are achievable.
+%
+%  %TC:ignore
+%  \begin{figure}[!t]
+%     \centering
+%     \includegraphics{Figures/FigurePumpy_v5.png}
+%     \caption{\textbf{Automated DNA-PAINT and STORM imaging.} \textbf{a)} NanoJ-Fluidics workflow used for multi-color STORM and DNA-PAINT imaging. \textbf{b)} Left: 4-channel merge of STORM and DNA-PAINT with actin (red, STORM), mitochondria (green, DNA-PAINT I1 strand), vimentin (yellow, DNA-PAINT I2 strand) and clathrin (cyan, DNA-PAINT I3 strand). Right: Single-channel images from the inset. Scale bars: 2 \textmu{}m.}
+%     \label{fig:PAINT}
+%  \end{figure}
+%  %TC:endignore
+%
+% \subsection*{Discussion and Future Perspectives}
+%  The NanoJ framework provides a unique and comprehensive set of tools to support fluorescence imaging, from data acquisition and protocol optimisation to structural quantification. It offers powerful and user-friendly solutions to common pitfalls of image analysis such as drift correction and channel registration (NanoJ-Core). It extends the tools available for SRM to expert and novice users alike and aligns with the general aim of the community to extend SRM to live-cell applications, offering the first open-source analytical approach for live-cell SRM imaging (NanoJ-SRRF). NanoJ offers a way to correlate dynamic live-cell data with high-resolution fixed-cell data in an automated and highly reproducible manner (NanoJ-Fluidics). It incorporates an analytical method for the generation of accurate, high-content, molecular specific models (NanoJ-VirusMapper). Finally, the NanoJ framework provides tools to quantitatively assess SRM image quality by spatially mapping unbiased quality metrics, artefacts (errors) and FRC resolution (NanoJ-SQUIRREL), with the aim to improve standards in assessing and reporting microscopy data.
+%
+%  The NanoJ framework gives access user-friendly yet robust analytical methods in tandem with new approaches to perform live-cell SRM experiments. A typical SRM live-cell imaging experiment using the NanoJ framework would entail acquiring a SRRF-compatible raw data set in any modern fluorescence microscope; performing drift correction and channel registration; followed by SRRF analysis for SRM image reconstruction; and finally, quality check using SQUIRREL. Used concomitantly in this manner, these tools can be used to address a large variety of biological questions and can be seamlessly repeated for imaging protocol optimisation and complemented using NanoJ-VirusMapper and/or NanoJ-Fluidics. Thus, the NanoJ-enabled scientific pipeline allows any user, regardless of the experience level, to seamlessly obtain SRM quantitative data of the highest scientific quality.
+%
+%  The NanoJ framework  was developed to facilitate access and expand the options of research groups using fluorescence microscopy. Hence, speed, reliability, performance and cross-compatibility are of paramount importance. In this context, NanoJ has been designed for high-performance image analysis, using GPU computing, ensuring the quick processing of large data volumes \cite{herbert2012single,pereira2015high,almada2015palm,beghin2017localization,douglass2016super}. Further, NanoJ's modular and open-source nature and its integration within ImageJ allow it to be used in conjunction with other analysis software packages \cite{sage2018super,weigert2017content,henriques2010quickpalm, laine2018milesim}. We are continuously supporting, adapting and expanding the framework to include new approaches, such as 3D imaging.
+%
+%  We expect NanoJ to set the standard for useful, open-source, high performance methods for the whole microscopy community.
+%
+% \subsection*{Software and Hardware Availability}
+%  NanoJ follows open-source software and hardware standards. Each of its modules can be installed by enabling the corresponding code repository in Fiji or by following the instructions on the corresponding websites:
+%  \small
+%  \begin{itemize}
+%   \item \href{https://github.com/HenriquesLab/NanoJ-Core}{https://github.com/HenriquesLab/NanoJ-Core}
+%   \item \href{https://github.com/HenriquesLab/NanoJ-SRRF}{https://github.com/HenriquesLab/NanoJ-SRRF}
+%   \item \href{https://bitbucket.org/rhenriqueslab/nanoj-squirrel}{https://bitbucket.org/rhenriqueslab/NanoJ-SQUIRREL}
+%   \item \href{https://bitbucket.org/rhenriqueslab/NanoJ-VirusMapper}{https://bitbucket.org/rhenriqueslab/NanoJ-VirusMapper}
+%   \item \href{https://github.com/HenriquesLab/NanoJ-Fluidics}{https://github.com/HenriquesLab/NanoJ-Fluidics}
+% \end{itemize}
+
+% \begin{acknowledgements}
+%  First and foremost, we would like to thank the ImageJ and Fiji open-source development community. Their astonishing work has been the inspiration to the creation of NanoJ. There has been a large number of beta-testers and NanoJ users whose feedback helped us to continually update and improve its code, to the best of our capacity we keep an updated list of significant contributors in the website corresponding to each NanoJ module. We thank Prof. Ralf Jungmann at Max Planck Institute of Biochemistry Munich for reagents and advice.  This work was funded by grants from the UK Biotechnology and Biological Sciences Research Council (BB/M022374/1; BB/P027431/1; BB/R000697/1; BB/S507532/1) (R.H., P.M.P. and R.F.L.), the UK Medical Research Council (MR/K015826/1) (R.H.), the Wellcome Trust (203276/Z/16/Z) (S.C., R.H and B.B.), Core funding to the MRC Laboratory for Molecular Cell Biology, University College London (MC\_UU12018/7) (J.M.), the European Research Council (649101—UbiProPox) (J.M.) and the Centre National de la Recherche Scientifique (CNRS ATIP-AVENIR program AO2016) (C.L.). N.G. and R.D.M.G funded by the Engineering and Physical Sciences Research Council (EP/L504889/1). P.A. was supported by a PhD fellowship from the UK’s Biotechnology and Biological Sciences Research Council. Research by B.B. was supported by UCL, Cancer Research UK (C1529/A17343), BBSRC (BB/P001440/1) and MRC (MC\_CF12266). K.L.T. and G.T.R. are supported by a 4-year MRC Research Studentship. D.A. is presently a Marie Curie fellow (Marie Sklodowska-Curie 750673). A.C.L. AND F.H. were supported by the Swedish Research Council, grant 621-2013-4685.
+% \end{acknowledgements}
+%
+% \begin{contributions}
+%  These contributions follow the Contributor Roles Taxonomy guidelines: \href{https://casrai.org/credit/}{https://casrai.org/credit/}.
+%  Conceptualization: K.L.T, R.F.L., N.G., R.D.M.G, P.A., D.A., G.T.R., B.B., J.M., C.L., P.M.P., S.C., R.H.;
+%  Data curation: K.L.T, R.F.L., R.D.M.G, G.T.R., J.M., C.L., P.M.P., S.C., R.H.;
+%  Formal analysis:  K.L.T, R.F.L., R.D.M.G, C.L., S.C.;
+%  Funding acquisition:  A.C.L, B.B., C.L., R.H.;
+%  Investigation: K.L.T, R.F.L., R.D.M.G, G.T.R., C.L., P.M.P., S.C.;
+%  Methodology: R.F.L., N.G., R.D.M.G, P.A., J.M., C.L., P.M.P., S.C., R.H.;
+%  Project administration: R.F.L., B.B., J.M., C.L., P.M.P., S.C., R.H.;
+%  Resources: K.L.T, R.D.M.G, D.A., G.T.R., F.H., A.C.L., B.B., J.M., C.L., P.M.P., S.C.;
+%  Software: R.F.L., N.G., R.D.M.G, P.A., C.L., P.M.P., S.C., R.H.;
+%  Supervision: R.F.L., A.L., B.B., J.M., C.L., P.M.P., S.C., R.H.;
+%  Validation: K.L.T, R.F.L., N.G., R.D.M.G, P.A., D.A., C.L., P.M.P., S.C.;
+%  Visualization:  K.L.T, R.F.L., R.D.M.G, D.A., C.L., P.M.P., S.C., R.H.;
+%  Writing – original draft: K.L.T, R.F.L., R.D.M.G, D.A., C.L., P.M.P., S.C., R.H.;
+%  Writing – review \& editing: all authors.
+%
+% \end{contributions}
+%
+% \begin{interests}
+%  The authors declare no competing financial interests.
+% \end{interests}
+
+\section*{Bibliography}
+\bibliographystyle{zHenriquesLab-StyleBib}
+\bibliography{06_Bibliography_Clean}

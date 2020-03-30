@@ -1,0 +1,18 @@
+\section*{Word Counts}
+This section is \textit{not} included in the word count.
+
+
+
+\subsection*{Notes on JPhysD article}
+\begin{itemize}
+    \item Abstract: 150 words, unreferenced
+    % \item Sections: Introduction Results, Discussion, Online Methods. Topical subheadings allowed in Results and Online Methods
+    \item Main text: short format 4500 words, long is 8500 words.
+    \item No limit in number of figures
+    % \item References: Up to 40
+\end{itemize}
+
+\section*{Statistics on word count}
+
+\immediate\write18{texcount -utf8 -nobib -merge -sum -dir 01_Article_MainText.tex > \jobname.wcdetail }
+\verbatiminput{\jobname.wcdetail}
