@@ -1,5 +1,6 @@
 package proyecto;
 import proyecto.Character;
+import proyecto.Party;
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -9,7 +10,9 @@ class City{
     int level;
     int currentWealth;
     int[] wealthLevels = {10000, 100000, 1000000, 10000000};
-    ArrayList<Character> inhabitants = new ArrayList<Character>();
+
+    ArrayList<Party> parties = new ArrayList<Party>();
+
     int currentInhabitants;
     int[] cityBoundry = {5, 10, 15, 20, 25};
 
@@ -20,8 +23,21 @@ class City{
 	this.currentWealth = 0;
 	this.currentInhabitants = numberOfInhabitants;
 
-	for(int i = 0; i < numberOfInhabitants; i++)
-	    inhabitants.add(new Character(posX, posY, -1));
+	if(currentInhabitants < 0)
+	    parties.add(new Party(posX, posY, -1, new Character()));
+
+	for(int i = 0; i < numberOfInhabitants - 1; i++){
+	    boolean b = true;
+	    for(Party p: parties){
+		if(p.partyMembers < 6){
+		    p.addMember(new Character());
+		    b = false;
+		    break;
+		}
+	    }
+	    if(b)
+		parties.add(new Party(posX, posY, -1, new Character()));
+	}
     }
 
     public void levelUp(){
@@ -39,7 +55,7 @@ class City{
 	    }
 	}
     }
-    
+
     public void addWealth(int gold){
 	this.currentWealth = currentWealth + gold;
     }

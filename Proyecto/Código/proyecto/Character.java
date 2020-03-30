@@ -2,8 +2,6 @@ package proyecto;
 import java.util.Random;
 
 class Character{
-    int posX, posY;
-    int direction;
     int level;
     double attackHit;
     double attackDamage;
@@ -27,16 +25,11 @@ class Character{
     int carrying;
     int amountSpent;
     int itemLevel;
-    boolean inCity;
 
-    Character(int posX, int posY, int direction){
-	this.posX = posX;
-	this.posY = posY;
-	this.direction = direction;
+    Character(){
 	this.carrying = 0;
 	this.level = 1;
 	this.currentXP = 0;
-	this.inCity = true;
 	this.amountSpent = 0;
 	this.itemLevel = 0;
 
