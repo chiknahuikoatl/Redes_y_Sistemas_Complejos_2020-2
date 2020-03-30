@@ -15,7 +15,8 @@ El simulador se encuentra en la carpeta
 ```console
 Proyecto/Código/proyecto/
 ```
-Para poder ejecutar el simulador se necesita java 11
+Para poder ejecutar el simulador se necesita java 11.
+
 Los siguientes comandos se ejecutan desde la carpeta 
 ```console
 Proyecto/Código/
@@ -28,7 +29,7 @@ Para ejecutar el código:
 ```console
 @user:~$ java -cp lib/core.jar:classes proyecto/Proyecto
 ```
-O ejecutar el archivo
+O desde terminal ejecutar el siguiente comando:
 ```console
 ./Correr.sh
 ```
