@@ -1,0 +1,38 @@
+%\documentclass[times, twoside, watermark]{zHenriquesLab-StyleBioRxiv}
+%\documentclass[times, twoside]{zHenriquesLab-StyleBioRxivNoLogos}
+\documentclass[times, twoside]{zHenriquesLab-StyleBioRxiv}
+\usepackage{blindtext}
+\usepackage[overload]{textcase}
+% \usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+% \usepackage{layouts}
+% This bit is for the to-do list
+% -------
+\usepackage{enumitem,amssymb}
+\newlist{todolist}{itemize}{2}
+\setlist[todolist]{label=$\square$}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+\newcommand{\done}{\rlap{$\square$}{\raisebox{2pt}{\large\hspace{1pt}\cmark}}%
+\hspace{-2.5pt}}
+\newcommand{\wontfix}{\rlap{$\square$}{\large\hspace{1pt}\xmark}}
+% -------
+\newcommand{\dnd}{\textit{Dungeons $\&$ Dragons }}
+
+
+\begin{document}
+    \bibliographystyle{zHenriquesLab-StyleBib}
+
+    \include{01_Article_MainText}
+    %\include{02_Article_Methods}
+    % \include{03_Article_Supplementary}
+    %\include{04_Article_WordCount}
+    %\include{05_ToDoList}
+
+\end{document}
