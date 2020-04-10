@@ -2,28 +2,22 @@ package proyecto;
 import java.util.Random;
 
 class Monster{
-    int posX, posY;
     int direction;
     int level;
     double attackHit;
     double attackDamage;
-    int health;
-    int currentHealth;
+    double health;
+    double currentHealth;
     double AC;
 
     Random rnd = new Random();
-    int[] XP = {60, 180, 540, 1300, 2800,
-		4600, 6800, 9600, 12800, 17000,
-		20000, 24000, 28000, 33000, 39000,
-		45000, 53000, 61000, 71000, 80000};
+    int[] XP = {60, 180, 540, 1300, 2800, 4600, 6800, 9600, 12800, 17000, 20000, 24000, 28000, 33000, 39000, 45000, 53000, 61000, 71000, 80000};
 
     int carrying;
     int charactersKilled;
     int charactersNeeded;
 
-    Monster(int posX, int posY, int direction, int worldLevel){
-	this.posX = posX;
-	this.posY = posY;
+    Monster(int direction, int worldLevel){
 	this.direction = direction;
 	this.carrying = 0;
 	leveled(worldLevel);

@@ -5,8 +5,8 @@ class Character{
     int level;
     double attackHit;
     double attackDamage;
-    int health;
-    int currentHealth;
+    double health;
+    double currentHealth;
     double AC;
     String type;
 

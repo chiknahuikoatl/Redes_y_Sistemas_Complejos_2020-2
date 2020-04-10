@@ -10,11 +10,12 @@ class Cell{
     boolean taken;
     Random rnd = new Random();
 
+    Monster m = null;
+    
     Cell(int cellX, int cellY, boolean treasure, int amount){
 	this.cellX = cellX;
 	this.cellY = cellY;
 	this.treasure = treasure;
-    if(amount < 1) amount = 1;
 	if(treasure)
 	    treasureAmount = (rnd.nextInt(amount)*50) + 100;
 	this.party = false;

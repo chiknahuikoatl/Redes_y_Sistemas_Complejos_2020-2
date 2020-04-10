@@ -17,9 +17,9 @@ public class Proyecto extends PApplet{
     int height = 300;
     int width = 400;
     int cell = 2;
-    int characters = 251;
+    int characters = 1;
     int monsters = 300;
-    int cities = 37;
+    int cities = 7;
     int levelAverage = 1;
     float density = 0.01f;
     World world;
@@ -66,13 +66,19 @@ public class Proyecto extends PApplet{
             world.size * 2 * c.level, world.size * 2 * c.level);
         }
 
-	/*Draw monsters
+	//Draw monsters
+	for(Pair p: world.monsterList){
+	    fill(255, 0, 0);
+	    rect(p.posX * world.size, p.posY * world.size, world.size,
+		 world.size);
+	}
+	/*
 	for(Monster m: world.monsterList){
 	    fill(255,0,0);
 	    rect(m.posX * world.size, m.posY * world.size, world.size,
 		 world.size);
-		 }*/
-
+		 }
+	*/
 
         //Information
         fill(0,102,102);
@@ -97,8 +103,9 @@ public class Proyecto extends PApplet{
 	int monsters;
         int treasures;
         Cell[][] cell;
+	int iteration = 0;
         ArrayList<City> cityList = new ArrayList<City>();
-	ArrayList<Monster> monsterList = new ArrayList<Monster>();
+	ArrayList<Pair> monsterList = new ArrayList<Pair>();
         Random rnd = new Random();
 
         int day = 0;
@@ -125,6 +132,11 @@ public class Proyecto extends PApplet{
                 }
             }
 
+	    if(characters >= ((width * height) - treasures)){
+                throw new IllegalArgumentException("The number of characters"+
+                " won't fit");
+            }
+
             System.out.println("Populating with cities...");
             ArrayList<Integer> divided = divideCharacters(characters, cities);
             System.out.println(divided.toString());
@@ -138,7 +150,12 @@ public class Proyecto extends PApplet{
                 cell[x][y].city = true;
             }
 
-	    /*System.out.println("Populating with monsters...");
+	    if(monsters >= ((width * height) - treasures - characters - (cities * 60))){
+                throw new IllegalArgumentException("The number of monsters"+
+                " won't fit");
+            }
+
+	    System.out.println("Populating with monsters...");
 	    while(monsters > 0){
 
 		do{
@@ -146,15 +163,15 @@ public class Proyecto extends PApplet{
 		    y = rnd.nextInt(height);
 
 		}while(cell[x][y].city == true ||
-		       cell[x][y].city == true ||
+		       cell[x][y].monster == true ||
 		       checkNear(cell[x][y], "City", 5));
+		monsterList.add(new Pair(x, y));
+		cell[x][y].m = new Monster(rnd.nextInt(8), 1);
+		cell[x][y].monster = true;
 		monsters--;
-	    }*/
+	    }
 
-            if(characters >= ((width * height) - treasures)){
-                throw new IllegalArgumentException("The number of characters"+
-                " won't fit");
-            }
+
             this.characters = characters;
         }
 
@@ -240,86 +257,90 @@ public class Proyecto extends PApplet{
             }
             cell[p.posX][p.posY].party = true;
         }
-	/*
-	 void moveMonster(Monster m, int direction){
+
+
+	Pair moveMonster(Pair m, int direction){
+	    int x = m.posX;
+	    int y = m.posY;
             switch (direction) {
                 case -1:
                 break;
                 case 0:
-                m.posX = (m.posX - 1) % width;
-                if (m.posX < 0) {
-                    m.posX += width;
+                x = (m.posX - 1) % width;
+                if (x < 0) {
+                    x += width;
                 }
-                m.posY = (m.posY - 1) % height;
-                if (m.posY < 0) {
-                    m.posY += height;
+                y = (m.posY - 1) % height;
+                if (y < 0) {
+                    y += height;
                 }
-                m.direction = direction;
                 break;
                 case 1:
-                m.posY = (m.posY - 1) % height;
-                if (m.posY < 0) {
-                    m.posY += height;
+                y = (m.posY - 1) % height;
+                if (y < 0) {
+                    y += height;
                 }
-                m.direction = direction;
                 break;
                 case 2:
-                m.posX = (m.posX + 1) % width;
-                if (m.posX < 0) {
-                    m.posX += width;
+                x = (m.posX + 1) % width;
+                if (x < 0) {
+                    x += width;
                 }
-                m.posY = (m.posY - 1) % height;
-                if (m.posY < 0) {
-                    m.posY += height;
+                y = (m.posY - 1) % height;
+                if (y < 0) {
+                    y += height;
                 }
-                m.direction = direction;
                 break;
                 case 3:
-                m.posX = (m.posX + 1) % width;
-                if (m.posX < 0) {
-                    m.posX += width;
+                x = (m.posX + 1) % width;
+                if (x < 0) {
+                    x += width;
                 }
-                m.direction = direction;
                 break;
                 case 4:
-                m.posX = (m.posX + 1) % width;
-                if (m.posX < 0) {
-                    m.posX += width;
+                x = (m.posX + 1) % width;
+                if (x < 0) {
+                    x += width;
                 }
-                m.posY = (m.posY + 1) % height;
-                if (m.posY < 0) {
-                    m.posY += height;
+                y = (m.posY + 1) % height;
+                if (y < 0) {
+                    y += height;
                 }
-                m.direction = direction;
                 break;
                 case 5:
-                m.posY = (m.posY + 1) % height;
-                if (m.posY < 0) {
-                    m.posY += height;
+                y = (m.posY + 1) % height;
+                if (y < 0) {
+                    y += height;
                 }
-                m.direction = direction;
                 break;
                 case 6:
-                m.posX = (m.posX - 1) % width;
-                if (m.posX < 0) {
-                    m.posX += width;
+                x = (m.posX - 1) % width;
+                if (x < 0) {
+                    x += width;
                 }
-                m.posY = (m.posY + 1) % height;
-                if (m.posY < 0) {
-                    m.posY += height;
+                y= (m.posY + 1) % height;
+                if (y < 0) {
+                    y += height;
                 }
-                m.direction = direction;
                 break;
                 case 7:
-                m.posX = (m.posX - 1) % width;
-                if (m.posX < 0) {
-                    m.posX += width;
+                x = (m.posX - 1) % width;
+                if (x < 0) {
+                    x += width;
                 }
-                m.direction = direction;
                 break;
             }
-            cell[m.posX][m.posY].monster = true;
-	    }*/
+	    if(!cell[x][y].monster){
+		Monster monsterAux = cell[m.posX][m.posY].m;
+		cell[m.posX][m.posY].m = null;
+		cell[m.posX][m.posY].monster = false;
+		cell[x][y].m = monsterAux;
+		cell[x][y].monster = true;
+		cell[x][y].m.direction = direction;
+		return new Pair(x, y);
+	    }
+	    return new Pair(m.posX, m.posY);
+	}
 
         int directionRandomFront(int direction){
             int n = direction;
@@ -339,9 +360,6 @@ public class Proyecto extends PApplet{
             return rnd.nextInt(3) + n - 1;
         }
 
-        //boolean is(Party p, int d, String target){
-        //    int x = p.posX;
-        //    int y = p.posY;
 	boolean is(int x, int y, int d, String target){
             switch(d){
                 case 0:
@@ -539,10 +557,7 @@ public class Proyecto extends PApplet{
             return false;
         }
 
-        ArrayList<Integer> findNearest(Cell c, String target){
-            ArrayList<Integer> result = new ArrayList<Integer>();
-	    result.add(-1);
-	    result.add(-1);
+        Pair findNearest(Cell c, String target){
 
 	    for (int d = 1; d<max(height,width); d++) {
                 for (int i = 0; i < d + 1; i++) {
@@ -554,9 +569,7 @@ public class Proyecto extends PApplet{
 			y1 += height;
 
                     if(isEntity(x1, y1, target)){
-			result.set(0, x1);
-			result.set(1, y1);
-			return result;
+			return new Pair(x1, y1);
 		    }
 
                     int x2 = (c.cellX + d - i) % width;
@@ -567,9 +580,7 @@ public class Proyecto extends PApplet{
 			y2 += height;
 
                     if(isEntity(x2, y2, target)){
-			result.set(0, x2);
-			result.set(1, y2);
-			return result;
+			return new Pair(x2, y2);
 		    }
                 }
 
@@ -583,9 +594,7 @@ public class Proyecto extends PApplet{
 			y1 += height;
 
                     if(isEntity(x1, y1, target)){
-			result.set(0, x1);
-			result.set(1, y1);
-			return result;
+			return new Pair(x1, y1);
 		    }
 
                     int x2 = (c.cellX + i) % width;
@@ -596,13 +605,11 @@ public class Proyecto extends PApplet{
 			y2 += height;
 
                     if(isEntity(x2, y2, target)){
-			result.set(0, x2);
-			result.set(1, y2);
-			return result;
+			return new Pair(x2, y2);
 		    }
                 }
             }
-	    return result;
+	    return new Pair(-1, -1);
         }
 
         int directionToMove(int x1, int y1, int x2, int y2){
@@ -637,7 +644,7 @@ public class Proyecto extends PApplet{
         }
 
 	void moveToCity(City c, Party p){
-	    int d = directionToMove(c.posX, c.posY, p.posX, p.posY);
+	    int d = directionRandomFront(p.direction);//directionToMove(c.posX, c.posY, p.posX, p.posY);
 	    if(is(p.posX, p.posY, d, "City"))
 		enterCity(c, p, d);
 	    else
@@ -646,7 +653,7 @@ public class Proyecto extends PApplet{
 
 	void moveToTreasure(Party p){
 	    System.out.println("Finding treasure");
-	    if(p.found){
+	    /*if(p.found){
 
 		System.out.println("Found treasure");
 		System.out.println("Treasure is located: (" + p.foundX + ", " + p.foundY + ")");
@@ -660,12 +667,19 @@ public class Proyecto extends PApplet{
 		    moveParty(p, d);
 		}
 	    }
-	    else{
-		boolean b = checkNear(cell[p.posX][p.posY], "Treasure", 10);
+	    else{*/
+	    int d = directionRandomFront(p.direction);
+	    //Delete
+	    if(is(p.posX, p.posY, d, "Treasure")){
+		    System.out.println("The treasure is next to me");
+		    takeTreasure(p, d);
+	    }else{
+
+
+		/*boolean b = checkNear(cell[p.posX][p.posY], "Treasure", 10);
 		if(b){
 		    ArrayList<Integer> coordinates = findNearest(cell[p.posX][p.posY],
 								 "Treasure");
-		    // System.out.println(result.toString());
 		    int x = coordinates.get(0);
 		    int y = coordinates.get(1);
 		    int d = directionToMove(x, y, p.posX, p.posY);
@@ -676,9 +690,10 @@ public class Proyecto extends PApplet{
 		    p.found = true;
 		    p.foundX = x;
 		    p.foundY = y;
-		}else
+		    }else*/
 		    moveParty(p ,directionRandomFront(p.direction));
-	    }
+	    } //Delete
+		//}
 	}
 
         void addTreasures(){
@@ -714,16 +729,20 @@ public class Proyecto extends PApplet{
         }
 
         void run(){
+	    System.out.println("Iteration: " + iteration);
+	    iteration++;
+
             for(City city : cityList){
                 int i = 1;
-
-
-		for(Party p: city.parties){
+		int n = city.parties.size();
+	        for(int j = 0; j < n; j++){
+		    //for(Party p: city.parties){
+		    Party p = city.parties.get(j);
 		    int d = directionRandomFront(p.direction);
 		    if(p.inCity){
 			if(p.partyMembers > 2){
 			    if(i > 0){
-				i--;
+				j--;
 				moveToTreasure(p);
 			    }
 			}
@@ -733,6 +752,17 @@ public class Proyecto extends PApplet{
 			else
 			    moveToTreasure(p);
 
+
+			if(checkNear(cell[p.posX][p.posY], "Monster", 1)){
+			    Pair monster = findNearest(cell[p.posX][p.posY], "Monster");
+			    Battle battle = new Battle(p, cell[monster.posX][monster.posY].m);
+			    if(battle.rollInitiative()){
+			        city.parties.remove(p);
+				i--;
+			        n--;
+			    }else
+				monsterList.remove(monster);
+			}
 		    }
 		    for(Character c: p.party)
 			c.leveledUp();
@@ -740,6 +770,12 @@ public class Proyecto extends PApplet{
                 city.leveledUp();
             }
 
+	    for(Pair p: monsterList){
+		int d = directionRandomFront(cell[p.posX][p.posY].m.direction);
+		Pair p1 = moveMonster(p, d);
+		p.posX = p1.posX;
+		p.posY = p1.posY;
+	    }
 
             if(treasures < 100)
 		addTreasures();
