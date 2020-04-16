@@ -194,16 +194,22 @@ iteraciones según las propiedades de los actores del sistema.
         carpeta \texttt{archivos}.
     }
     \subsubsection*{Analizador de Datos}{
-        Aprovechando las bibliotecas que Python tiene para análisis matemático
-        (\texttt{numpy}) y de gráficas (\texttt{networkx}), creamos un programa
-        que extrayera los datos generados por el simulador para recrear la
-        gráfica y estudiarla.
+        Esta parte del programa se divide en dos: \\
+        Primero tenemos dentro del código del simulador clases y métodos que
+        extraen los datos generados por cada clase y los escriben en un archivo
+        con formato \texttt{.csv} (Comma separated value). Después, con un
+        programa hecho en python con la biblioteca \texttt{csv} leemos los
+        archivos generados. Finalmente, aprovechando las bibliotecas que Python
+        tiene para análisis matemático (\texttt{numpy}) y de gráficas
+        (\texttt{networkx}), creamos un programa que extrayera los datos
+        generados por el simulador para recrear la gráfica y estudiarla.
     }
 }
-\subsection*{Esperanzas}{Lo que estamos esperando estudiar son los equipos
-        y ciudades resultantes después de varias iteraciones. En general, queremos ver
-        que combinaciones de equipos suelen llegar hasta el final del simulación, y si
-        ciudades con varios equipos son más importantes que ciudades con pocos.}
+\subsection*{Objetivos}{Lo que estamos esperando estudiar son los equipos
+    y ciudades resultantes después de varias iteraciones. En general, queremos ver
+    que combinaciones de equipos suelen llegar hasta el final del simulación, y si
+    ciudades con varios equipos son más importantes que ciudades con pocos.
+}
 
 \subsection*{Resultados}{}
 \subsection*{Conclusiones}{}
