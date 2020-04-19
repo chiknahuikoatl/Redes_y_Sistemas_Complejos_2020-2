@@ -2,8 +2,9 @@ package proyecto;
 import proyecto.Character;
 import java.util.Random;
 import java.util.ArrayList;
+import proyecto.Printable;
 
-class Party{
+class Party implements Printable{
     int posX;
     int posY;
     int direction;
@@ -13,6 +14,8 @@ class Party{
     int fighters;
     int rangers;
     int mages;
+
+    String characterClass;
 
     boolean found;
     int foundX;
@@ -34,13 +37,17 @@ class Party{
 	this.found = false;
 	this.foundX = 0;
 	this.foundY = 0;
-	
-	if(c.type == "Fighter")
+
+	if(c.type == "Fighter"){
+	    characterClass = "Fighter";
 	    fighters++;
-	else if(c.type == "Ranger")
+	}else if(c.type == "Ranger"){
+	    characterClass = "Ranger";
 	    rangers++;
-	else
+	}else{
+	    characterClass = "Mage";
 	    mages++;
+	}
 	party.add(c);
     }
 
@@ -73,5 +80,20 @@ class Party{
 	int divided = (int) Math.floor(treasure/partyMembers);
 	for(Character c: party)
 	    c.carrying = c.carrying + divided;
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+        s += posX + ", " + posY + ", ";
+        s += treasures + ", " + partyMembers + ", ";
+        s += String.valueOf(inCity) + ", " + direction + ", ";
+        return s;
+    }
+
+    public String getHeader() {
+        String s = "";
+        s += "x, y, treasure, partyMembers, inCity, direction\n";
+        return s;
     }
 }

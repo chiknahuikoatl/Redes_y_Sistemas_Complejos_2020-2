@@ -1,7 +1,8 @@
 package proyecto;
+import proyecto.Printable;
 import java.util.Random;
 
-class Character{
+class Character implements Printable{
     int level;
     double attackHit;
     double attackDamage;
@@ -129,4 +130,19 @@ class Character{
 	this.itemLevel = this.itemLevel + 1;
     }
 
+    @Override
+    public String toString() {
+        String s = "";
+        s += level + ", ";
+        s += attackHit + ", " + attackDamage + ", ";
+        s += health + ", " + AC + ", ";
+        s += type + ", " + carrying + ", " + itemLevel + ", ";
+        return s;
+    }
+
+    public String getHeader() {
+        String s = "";
+        s += "level, attackHit, attackDamage, health, AC, type, carrying, itemLevel\n";
+        return s;
+    }
 }

@@ -1,7 +1,8 @@
 package proyecto;
+import proyecto.Printable;
 import java.util.Random;
 
-class Monster{
+class Monster implements Printable{
     int direction;
     int level;
     double attackHit;
@@ -64,4 +65,18 @@ class Monster{
 		leveled(level + 1);
     }
 
+    @Override
+    public String toString() {
+        String s = "";
+        s += direction + ", " + carrying + ", ";
+        s += level + ", " + attackHit + ", ";
+        s += attackDamage + ", " + health + ", " + AC + ", ";
+        return s;
+    }
+
+    public String getHeader() {
+        String s = "";
+        s += "direction, treasure, level, attackHit, attackDamage, health, AC\n";
+        return s;
+    }
 }

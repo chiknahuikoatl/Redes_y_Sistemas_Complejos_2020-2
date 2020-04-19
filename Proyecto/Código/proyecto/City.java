@@ -1,10 +1,11 @@
 package proyecto;
 import proyecto.Character;
 import proyecto.Party;
+import proyecto.Printable;
 import java.util.Random;
 import java.util.ArrayList;
 
-class City{
+class City implements Printable{
     int posX;
     int posY;
     int level;
@@ -58,5 +59,20 @@ class City{
 
     public void addWealth(int gold){
 	this.currentWealth = currentWealth + gold;
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+        s += posX + ", " + posY + ", ";
+        s += level + ", " + currentWealth + ", ";
+        s += currentInhabitants + ", ";
+        return s;
+    }
+
+    public String getHeader() {
+        String s = "";
+        s += "x, y, level, currentWealth, currentInhabitants\n";
+        return s;
     }
 }
