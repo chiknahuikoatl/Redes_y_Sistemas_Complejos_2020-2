@@ -23,11 +23,12 @@ class Battle{
 	int aliveTracker = charactersAlive;
 	boolean alive = true;
 	do{
+        aliveTracker = charactersAlive;
 	    for(Character c : characters){
-		if(c.currentHealth > 0)
-		   attackMonster(c);
-		else
-		    aliveTracker -= 1;
+    		if(c.currentHealth > 0)
+    		   attackMonster(c);
+    		else
+    		    aliveTracker -= 1;
 	    }
 	    if(aliveTracker < 1)
 		alive = false;
@@ -46,7 +47,7 @@ class Battle{
     }
 
     double roll1d20(int modifier){
-	return rnd.nextInt(19) + 1 + modifier;
+	return rnd.nextInt(20) + 1 + modifier;
     }
 
     void attackMonster(Character c){

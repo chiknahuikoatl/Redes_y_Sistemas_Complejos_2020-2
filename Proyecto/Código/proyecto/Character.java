@@ -126,7 +126,7 @@ class Character implements Printable{
     public void boughtItem(){
 	this.attackHit = attackHit + 1;
 	this.AC = AC + 1;
-	this.attackDamage = + 1;
+	this.attackDamage = this.attackDamage + 1;
 	this.itemLevel = this.itemLevel + 1;
     }
 
