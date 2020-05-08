@@ -83,7 +83,19 @@ public class Proyecto extends PApplet{
         text("Average Level: " + world.levelAverage, 251, (height * cell) + 24);
         text("Monsters: " + world.monsters, 128, (height * cell) + 12);
 
-        world.run();
+        for(Pair p: world.monsterList){
+            if(world.cell[p.posX][p.posY].m == null){
+                sop("Monster Null");
+                continue;
+            }
+            // int d = directionRandomFront(cell[p.posX][p.posY].m.direction);
+            // p = moveMonster(p, d);
+            // p.posX = p1.posX;
+            // p.posY = p1.posY;
+        }
+
+
+        // world.run();
     }
 
     class World{
@@ -620,16 +632,16 @@ public class Proyecto extends PApplet{
                     city.leveledUp();
                 }
 
-                for(Pair p: monsterList){
-                    if(cell[p.posX][p.posY].m == null){
-                        sop("Monster Null");
-                        continue;
-                    }
-                    int d = directionRandomFront(cell[p.posX][p.posY].m.direction);
-                    p = moveMonster(p, d);
-                    // p.posX = p1.posX;
-                    // p.posY = p1.posY;
-                }
+                // for(Pair p: monsterList){
+                //     if(cell[p.posX][p.posY].m == null){
+                //         sop("Monster Null");
+                //         continue;
+                //     }
+                //     int d = directionRandomFront(cell[p.posX][p.posY].m.direction);
+                //     p = moveMonster(p, d);
+                //     // p.posX = p1.posX;
+                //     // p.posY = p1.posY;
+                // }
 
                 if(treasures < 100) addTreasures();
                 else if(rnd.nextInt(8) <= 1) addTreasures();
