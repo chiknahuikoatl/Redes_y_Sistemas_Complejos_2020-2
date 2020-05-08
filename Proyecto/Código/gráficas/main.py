@@ -1,6 +1,6 @@
 import csv
 import networkx as nx
-import iterools as it
+import itertools as it
 import matplotlib.pyplot as plt
 
 
@@ -32,9 +32,10 @@ def creaGrafica(direccion):
     with open(direccion, newline='\n') as f:
         reader = csv.reader(f)
         its = iter(reader)
-        next(its)
+        print(next(its))
         i = 0
         for row in reader:
+            print(row)
             G.add_node(i, coord="["+row[0]+", "+row[1]+"]")
             i += 1
             n = 0;
@@ -44,11 +45,13 @@ def creaGrafica(direccion):
             if parseBoolCSV(row[6]): n += 1
             if parseBoolCSV(row[7]): n += 1
             val.append(n)
-        for p in it.permutations([0,len(val)],2):
+        print(val)
+        for p in list(it.combinations(range(0,len(val)),2)):
+            print(p)
             if(val[p[0]] == val[p[1]]):
                 G.add_edge(p[0], p[1])
-    nx.draw(G, with_labels=True)
-    plt.savefiv("cells.png")
+    nx.draw_circular(G, with_labels=True)
+    plt.savefig("cells.png")
 
 
 
@@ -57,10 +60,10 @@ def creaGrafica(direccion):
 
 
 print("Escribe la dirección de tu archivo")
-prueba = input()
+prueba = "../archivos/Cell-00.csv" #input()
 
-extraerDatos(prueba)
-dineros(prueba)
+# extraerDatos(prueba)
+# dineros(prueba)
 creaGrafica(prueba)
 
 # Import matplotlib.pyplot
