@@ -50,7 +50,7 @@ def creaGrafica(direccion):
             print(p)
             if(val[p[0]] == val[p[1]]):
                 G.add_edge(p[0], p[1])
-    nx.draw_circular(G, with_labels=True)
+    nx.draw_networkx(G, labels=coord)
     plt.savefig("cells.png")
 
 
